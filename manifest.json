@@ -1,0 +1,36 @@
+{
+  "version": "1.0.0",
+  "version_name": "1.0.0 develop",
+  "name": "Home Dashboard",
+  "description": "Home Dashboard",
+  "manifest_version": 2,
+  "background": {
+    "page": "background/app.html",
+    "persistent": true
+  },
+  /*
+  "browser_action": {
+    "default_icon": "asset/imgs/logo_1.png",
+    "default_title": "Go to Dashboard"
+  },*/
+  "app": {
+    "launch": {
+      "local_path": "html/index.html"
+    }
+  },
+  "icons": {
+    "16": "asset/imgs/logo_1.png",
+    "48": "asset/imgs/logo_1.png",
+   "128": "asset/imgs/logo_1_128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "<all_urls>"
+  ],
+  "web_accessible_resources": [
+    "asset/*.*",
+    "app/*",
+    "html/*",
+    "background/*"
+  ]
+}
