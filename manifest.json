@@ -23,6 +23,7 @@
     "48": "asset/imgs/logo_1.png",
    "128": "asset/imgs/logo_1_128.png"
   },
+  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com  https://ajax.googleapis.com/ajax/services/search/web; object-src 'self'",
   "permissions": [
     "activeTab",
     "<all_urls>"
