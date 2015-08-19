@@ -19,9 +19,4 @@ $(document).ready(function () {
     })();
 
 
-
-
-   // window.location.href = chrome.extension.getURL('html/auth.html');
-
-
 });

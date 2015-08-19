@@ -1,37 +1,22 @@
 ﻿/**************************
  * [Auth Controller]
  **************************/
-var post = {
+ 
+var authController = {
 
-    // [post][login]
-    login: function () {
-        var url = "/Auth/auth";
-        var params = {
-            username: $("#l-login .username").val(),
-            password: $("#l-login .password").val()
-        };
-
-        debugWriteLine(" url : " + url);
-        debugWriteLine(params);
-
-        globalObject.api.POST(url, params, function (result) {
-            debugWriteLine(result)
-            if (result.status == 100) {
-
-            } else {
-                clearForm();
-            };
-        });
+    // [authController][login]
+    login: function (user) {
+        debugConsole(" # authController >> login ")
     },
 
-    // [post][register]
+    // [authController][register]
     register: function () {
-
+        debugConsole(" # authController >> register ")
     },
 
-    // [post][forgetPassword]
+    // [authController][forgetPassword]
     forgetPassword: function () {
-
+       debugConsole(" # authController >> forgetPassword ")
     }
 };
 

@@ -40,6 +40,6 @@ var USERMODEL = function () {
 var userModel = new USERMODEL();
 var currentUser = userModel.getCurrentUser();
 
-if (!currentUser) {
-    userModel.userLogin("vichuang", "b0b1Tag123")
-}
+// if (!currentUser) {
+//     userModel.userLogin("vichuang", "b0b1Tag123")
+// }
