@@ -23,8 +23,8 @@ function debugConsole(message) {
 
 // ################# load html template   ################
 globalObject.loadHandlebarsTemplate = {
-    locadCommonTemplate: function (id_name, file_name, callbck) {
-        console.log('load handlebars template ... start');
+    locadCommonTemplate: function (id_name, file_name, callback) {
+        debugConsole('load handlebars template ... start');
         if (!id_name) {
             id_name = 'common-template';
         }
@@ -34,21 +34,39 @@ globalObject.loadHandlebarsTemplate = {
         $('<script>', { id: id_name }).appendTo('head').ready(function () {
             //var html = "handlebarsTemplate.xml";
             $("#" + id_name).load(file_name, function (data) {
-                console.log('load handlebars template ... success');
+                debugConsole('load handlebars template ... success');
                 if (callback && typeof (callback) === "function") {
                     callback();
                 };
             });
         });
     },
-    loadIdTemplate: function (id, dataSet) {
+    loadIdTemplate: function (id, dataSet, callback) {
         var html;
         if ($("#" + id).length > 0) {
             var source = $("#" + id).html();
             var template = Handlebars.compile(source);
             html = template(dataSet);
+            if(callback){
+                callback(html)
+            }
+        } else {
+           setTimeout(function(){
+               debugConsole("loadIdTemplate: " + id)
+                if ( $("#" + id).length > 0) {
+                    var source = $("#" + id).html();
+                    var template = Handlebars.compile(source);
+                    html = template(dataSet);
+                    debugConsole("loadIdTemplate: " + id + "..... success")
+                    if(callback){
+                        callback(html)
+                    }
+                    return;
+                }
+                setTimeout(arguments.callee, 1000)
+           },1000)
         }
-        return html;
+
     }
 };
 globalObject.loadHandlebarsTemplate.locadCommonTemplate();

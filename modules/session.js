@@ -3,7 +3,7 @@ var SESSION = function (){
 	
 	var exports = {};
 	var currentUser = {};
-	var isLogin = false;
+	var isLogin = true;
 	
 	var setLoginStatus = exports.setLoginStatus = function setLoginStatus(value){
 		if(value && value == 1){
@@ -51,12 +51,15 @@ var SESSION = function (){
 
 var session = new SESSION();
 session.getLoginStatus(function(status){
+	debugConsole("[session.getLoginStatus]")
+	console.log(status)
 	if(status){
-		var html = globalObject.loadHandlebarsTemplate.loadIdTemplate("tmp-main-header", {
+		globalObject.loadHandlebarsTemplate.loadIdTemplate("tmp-main-header", {
 			appName: chrome.runtime.getManifest().name
+		}, function(html){
+			$("#loading-wrapper").hide();
+			$("#main-header").html(html);
 		});
-		
-		$("#main-header").html(html);
 	}
 	
 })

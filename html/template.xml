@@ -1,8 +1,8 @@
-﻿<script id="main">
+﻿<script id="main" type="text/x-handlebars-template">
      <div id="main"></div>
 </script>
 
-<script id="tmp-main-header">
+<script id="tmp-main-header" type="text/x-handlebars-template">
      <header id="header">
         <ul class="header-inner">
             <li id="menu-trigger"  class="menu-trigger" data-trigger="#sidebar">
