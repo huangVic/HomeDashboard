@@ -13,16 +13,24 @@ var MessageListener = function(){
         chrome.extension.onMessage.addListener(function (request, sender, response) {
             switch (request.action) {
                 case "getCurrentUser":
-                    // var currentUser = userModel.getCurrentUser();
-                    // if (currentUser == null) {
-                    //     sendMessage({ action: "auth", value: false }, null);
-                    // } else {
-                    //     sendMessage({ action: "auth", value: true, user: currentUser }, null);
-                    // }
+                    var currentUser = userModel.getCurrentUser(function (currentUser) {
+                        if (currentUser == null) {
+                            sendMessage({ callback: request.callback, value: false, user: null }, null);
+                        } else {
+                            sendMessage({ callback: request.callback, value: true, user: currentUser }, null);
+                        }
+                    });
+                     
                     break;
+                
                 case "auth":
                     userModel.userLogin("vichuang", "b0b1Tag123");
                     break;
+                    
+                case "getDataModel": 
+                      dataModel.getDataSet(request.query, function(result){
+                           sendMessage({ callback: request.callback , dataModel: result }, null);
+                      })
             }
         });
     };

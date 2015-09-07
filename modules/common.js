@@ -73,15 +73,3 @@ globalObject.loadHandlebarsTemplate.locadCommonTemplate();
 
 
 
-// ################# initial Message Listener  ################
-globalObject.messageListener = {
-    addMessageListener: function () {
-        chrome.extension.onMessage.addListener(function (request, sender, response) {
-            debugConsole('<messageListener>.<addMessageListener>: ');
-        })
-    },
-    sendMessage: function (message) {
-        chrome.extension.sendMessage(message);
-    }
-
-}

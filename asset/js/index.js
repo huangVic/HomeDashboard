@@ -1,5 +1,5 @@
 ﻿
-    
+
 $(document).ready(function () {
     /*
     * Top Search
@@ -17,6 +17,4 @@ $(document).ready(function () {
             $('#header').removeClass('search-toggled');
         });
     })();
-
-
 });
