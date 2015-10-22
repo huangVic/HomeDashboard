@@ -14,11 +14,33 @@
     <link href="../asset/css/material-admin-bootstrap.css" rel="stylesheet">
     <link href="../asset/css/material-admin-responsive.css" rel="stylesheet">
     <style>
+        html{
+           overflow: hidden;
+           height: 100%;
+        }
         body {
             font-family: 'Noto Sans', sans-serif;
+            min-height: 100vh;
+            font-weight: 400;
+            padding-top: 65px;
+            padding-bottom: 110px;
+            -webkit-animation-name: fadeIn;
+            animation-name: fadeIn;
+            -webkit-animation-duration: 1000ms;
+            animation-duration: 1000ms;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            position: relative;
+            margin: 0;
         }
+        .zmdi{
+            font-size: 20px;
+        }
+       
     </style>
-	
+	<script src="../asset/librarys/jquery.min.js"></script>
+    <script src="../asset/librarys/handlebars-v3.0.3.js"></script>
+    <script src="../asset/librarys/waves.min.js"></script>
 </head>
 
 <body class="login-content" data-feedly-mini="yes">
@@ -26,7 +48,7 @@
     <div class="lc-block toggled" id="l-login">
         <div class="input-group m-b-20">
             <span class="input-group-addon">
-                <i class="md md-person"></i>
+                <i class="zmdi zmdi-account"></i>
             </span>
             <div class="fg-line">
                 <input type="text" class="form-control username" placeholder="帳號">
@@ -34,7 +56,7 @@
         </div>
         <div class="input-group m-b-20">
             <span class="input-group-addon">
-                <i class="md md-lock"></i>
+                <i class="zmdi zmdi-lock"></i>
             </span>
             <div class="fg-line">
                 <input type="password" class="form-control password" placeholder="密碼">
@@ -47,7 +69,7 @@
                 <i class="input-helper"></i>記住我的登入
             </label>
         </div>
-        <span class="btn btn-login btn-danger btn-float waves-effect waves-button waves-float"><i class="md md-arrow-forward"></i></span>
+        <span class="btn btn-login btn-danger btn-float waves-effect waves-button waves-float"><i class="zmdi zmdi-arrow-forward"></i></span>
         <ul class="login-navigation">
             <li data-block="#l-register" class="bgm-red">註冊帳號</li>
             <li data-block="#l-forget-password" class="bgm-orange">忘記密碼?</li>
@@ -57,7 +79,7 @@
     <div class="lc-block" id="l-register">
         <div class="input-group m-b-20">
             <span class="input-group-addon">
-                <i class="md md-person"></i>
+                <i class="zmdi zmdi-account"></i>
             </span>
             <div class="fg-line">
                 <input type="text" class="form-control username" placeholder="帳號">
@@ -65,7 +87,7 @@
         </div>
         <div class="input-group m-b-20">
             <span class="input-group-addon">
-                <i class="md md-mail"></i>
+                <i class="zmdi zmdi-email"></i>
             </span>
             <div class="fg-line">
                 <input type="text" class="form-control email" placeholder="電子郵件">
@@ -73,7 +95,7 @@
         </div>
         <div class="input-group m-b-20">
             <span class="input-group-addon">
-                <i class="md md-lock"></i>
+                <i class="zmdi zmdi-lock"></i>
             </span>
             <div class="fg-line">
                 <input type="password" class="form-control password" placeholder="密碼">
@@ -86,7 +108,7 @@
                 <i class="input-helper"></i>接受註冊協議
             </label>
         </div>
-        <span href="" class="btn btn-login btn-danger btn-float waves-effect waves-button waves-float"><i class="md md-arrow-forward"></i></span>
+        <span href="" class="btn btn-login btn-danger btn-float waves-effect waves-button waves-float"><i class="zmdi zmdi-arrow-forward"></i></span>
         <ul class="login-navigation">
             <li data-block="#l-login" class="bgm-green">登入</li>
             <li data-block="#l-forget-password" class="bgm-orange">忘記密碼?</li>
@@ -97,13 +119,13 @@
         <p class="text-left">忘記密碼了嗎?<br> 當你忘記密碼時, 請在下方輸入你註冊時的密碼, 系統將會重新發送驗證碼至你的信箱!!</p>
         <div class="input-group m-b-20">
             <span class="input-group-addon">
-                <i class="md md-email"></i>
+                <i class="zmdi zmdi-email"></i>
             </span>
             <div class="fg-line">
                 <input type="text" class="form-control email" placeholder="輸入您註冊時的電子郵件">
             </div>
         </div>
-        <span href="" class="btn btn-login btn-danger btn-float waves-effect waves-button waves-float"><i class="md md-arrow-forward"></i></span>
+        <span href="" class="btn btn-login btn-danger btn-float waves-effect waves-button waves-float"><i class="zmdi zmdi-arrow-forward"></i></span>
         <ul class="login-navigation">
             <li data-block="#l-login" class="bgm-green">登入</li>
             <li data-block="#l-register" class="bgm-red">註冊</li>
@@ -111,9 +133,10 @@
     </div>
 
     <!-- Javascript Libraries -->
-    <script src="../asset/librarys/jquery.min.js"></script>
-    <script src="../asset/librarys/bootstrap.min.js"></script>
-    <script src="../asset/librarys/waves.min.js"></script>
-    <script src="../asset/js/auth.js"></script>
+    <script src="../modules/common.js"></script>
+    <script src="../modules/messageListener.js"></script>
+    <script src="../modules/session.js"></script>
+    <script src="../modules/eventListener.js"></script>
+    <script src="../modules/auth.js"></script>
 </body>
 </html>

@@ -24,38 +24,28 @@ var SESSION = function () {
 	}
 
 	var getLoginStatus = exports.getLoginStatus = function getLoginStatus(callback) {
-        debugConsole(" #### session getLoginStatus ####")
-		if (isLogin) {
-			callback(true);
-		} else {
-			globalObject.messageListener.sendMessage({
-				action: "getCurrentUser",
-				callback: "session.auth"
-			})
-		}
+        debugConsole(" #### session 取得資料登入狀態 ####")
 
+		globalObject.messageListener.sendMessage({
+			action: "Query.CurrentUser",
+			callback: callback
+		})
 	}
 
 	var auth = exports.auth = function auth(status, user) {
-		debugConsole(" #### session auth ####")
+		debugConsole(" #### session 登入驗證 ####")
 		
 		console.log(status)
 		
-		if (status == true) {
-			setLoginStatus(status);
-			if (user && user != null) {
-				setCurrentUser(user);
-			}
-			globalObject.loadHandlebarsTemplate.loadIdTemplate("tmp-main-header", {
-				appName: chrome.runtime.getManifest().name
-			}, function (html) {
-				$("#loading-wrapper").hide();
-				$("#main-header").html(html);
-			});
-		} else {
-			console.log("xxx")
-			//window.location.href = chrome.extension.getURL('html/auth.html');
-		}
+		// if (status == true) {
+		// 	setLoginStatus(status);
+		// 	if (user && user != null) {
+		// 		setCurrentUser(user);
+		// 	}
+		// } else {
+		// 	console.log("xxx")
+		// 	window.location.href = chrome.extension.getURL('html/auth.html');
+		// }
 		
 
 	}
@@ -69,15 +59,15 @@ var SESSION = function () {
 var session = new SESSION();
 
 
-session.getLoginStatus(function (status) {
-	debugConsole("[session.getLoginStatus]")
-	console.log(status)
-	if (status) {
-		globalObject.loadHandlebarsTemplate.loadIdTemplate("tmp-main-header", {
-			appName: chrome.runtime.getManifest().name
-		}, function (html) {
-			$("#loading-wrapper").hide();
-			$("#main-header").html(html);
-		});
-	}
-})
+// session.getLoginStatus(function (status) {
+// 	debugConsole("[session.getLoginStatus]")
+// 	console.log(status)
+// 	if (status) {
+// 		globalObject.loadHandlebarsTemplate.loadIdTemplate("tmp-main-header", {
+// 			appName: chrome.runtime.getManifest().name
+// 		}, function (html) {
+// 			$("#loading-wrapper").hide();
+// 			$("#main-header").html(html);
+// 		});
+// 	}
+// })

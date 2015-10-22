@@ -97,3 +97,18 @@
     50%{top: -5px;}
     100% {top:0; }
 }
+
+
+.menu-more{
+    cursor: pointer;
+}
+
+#header .zmdi{
+    color: #fff;
+    font-size: 24px;
+}
+#header .dropdown-menu .zmdi{
+    color: #4C4C4C;
+    font-size: 20px;
+    margin-right: 5px;
+}

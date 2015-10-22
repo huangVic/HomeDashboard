@@ -12,7 +12,7 @@ var MessageListener = function(){
     var addMessageListener = exports.addMessageListener = function addMessageListener(){
         chrome.extension.onMessage.addListener(function (request, sender, response) {
             switch (request.action) {
-                case "getCurrentUser":
+                case "Query.CurrentUser":
                     var currentUser = userModel.getCurrentUser(function (currentUser) {
                         if (currentUser == null) {
                             sendMessage({ callback: request.callback, value: false, user: null }, null);
@@ -23,14 +23,15 @@ var MessageListener = function(){
                      
                     break;
                 
-                case "auth":
+                case "Query.Auth":
                     userModel.userLogin("vichuang", "b0b1Tag123");
                     break;
                     
-                case "getDataModel": 
+                case "Query.DataModel": 
                       dataModel.getDataSet(request.query, function(result){
                            sendMessage({ callback: request.callback , dataModel: result }, null);
                       })
+                      break;
             }
         });
     };

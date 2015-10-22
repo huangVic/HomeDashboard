@@ -7,10 +7,10 @@ var USERMODEL = function () {
 	 var getCurrentUser = exports.getCurrentUser = function getCurrentUser(callback){
 	 	 console.log(" #### UserModel getCurrentUser ####")
 		   if (Parse && Parse.User) {
-			   console.log(" #### currentUser #### ");
 			   
+			   console.log(" #### currentUser #### ")   
 			   var currentUser = Parse.User.current();
-			   if (currentUser.id) {
+			   if (currentUser && currentUser.id) {
 				   var user = {
 					   id: currentUser.id,
 					   user_name: currentUser.getUsername(), //Parse.User.current().getUsername(),

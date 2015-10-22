@@ -1,7 +1,13 @@
-﻿/**************************
- * [Auth Controller]
- **************************/
- 
+globalObject.app_view = "auth"
+
+
+
+function clearForm() {
+    $("input[type=text]").val("");
+}
+
+
+
 var authController = {
 
     // [authController][login]
@@ -21,15 +27,8 @@ var authController = {
 };
 
 
-function clearForm() {
-    $("input[type=text]").val("");
-}
-
-
-
 
 $(document).ready(function () {
-
     /*
      * Waves Animation
      */

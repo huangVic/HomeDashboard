@@ -10,6 +10,7 @@ if (version_name.length >= 2) {
 console.log("ext_version: " + ext_version);
 
 globalObject = {};
+globalObject.app_view = "index";
 /*******************************************/
 
 
@@ -69,7 +70,7 @@ globalObject.loadHandlebarsTemplate = {
 
     }
 };
-globalObject.loadHandlebarsTemplate.locadCommonTemplate();
+
 
 
 

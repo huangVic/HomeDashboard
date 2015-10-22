@@ -2,9 +2,19 @@
      <div id="main"></div>
 </script>
 
+<script id="tmp-alert-danger-messages" type="text/x-handlebars-template">
+   <div class="alert alert-danger" role="alert">
+       {{#if title}}
+        <strong>{{title}}</strong>
+       {{/if}}
+       {{message}}
+   </div>
+</script>
+
 <script id="tmp-main-header" type="text/x-handlebars-template">
      <header id="header">
         <ul class="header-inner">
+            <!--
             <li id="menu-trigger"  class="menu-trigger" data-trigger="#sidebar">
                 <div class="line-wrap">
                     <div class="line top"></div>
@@ -12,22 +22,26 @@
                     <div class="line bottom"></div>
                 </div>
             </li>
+            -->
             <li class="logo hidden-xs">
                 <a href="index.html">{{appName}}</a>
             </li>
             <li class="pull-right">
                 <ul class="top-menu">
+                    <!--
                     <li id="toggle-width">
                         <div class="toggle-switch">
                             <input id="tw-switch" type="checkbox" hidden="hidden">
                             <label for="tw-switch" class="ts-helper"></label>
                         </div>
                     </li>
+                    -->
                     <li id="top-search">
                         <a class="tm-search" href="">
-                            <i class="md-search"></i>
+                            <i class="zmdi zmdi-search"></i>
                         </a>
                     </li>
+                    <!--
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="tm-message" href="">
                             <i class="md-mail"></i>
@@ -187,6 +201,8 @@
                             </div>
                         </div>
                     </li>
+                    -->
+                    <!--
                     <li class="dropdown hidden-xs">
                         <a data-toggle="dropdown" class="tm-task" href="">
                             <i class="md-list"></i>
@@ -245,8 +261,9 @@
                             </div>
                         </div>
                     </li>
+                    -->
                     <li class="dropdown">
-                        <a data-toggle="dropdown" class="tm-settings" href=""><i class="md-more-vert"></i></a>
+                        <a data-toggle="dropdown" class="tm-settings menu-more"  ><i class="zmdi zmdi-more-vert"></i></a>
                         <ul class="dropdown-menu dm-icon pull-right">
                             <li>
                                 <a data-action="fullscreen" href=""><i class="md md-fullscreen"></i> Toggle Fullscreen</a>
@@ -254,19 +271,21 @@
                             <li>
                                 <a data-action="clear-localstorage" href=""><i class="md md-delete"></i> Clear Local Storage</a>
                             </li>
-                            <li>
-                                <a href=""><i class="md md-person"></i> Privacy Settings</a>
+                            <li id="menu-login-btn" style="display:none">
+                                <a href=""><i class="zmdi zmdi-sign-in""></i> 登入</a>
                             </li>
                             <li>
                                 <a href=""><i class="md md-settings"></i> Other Settings</a>
                             </li>
                         </ul>
                     </li>
+                    <!--
                     <li class="hidden-xs" id="chat-trigger" data-trigger="#chat">
                         <a class="tm-chat" href="">
                             <i class="md-format-align-right"></i>
                         </a>
                     </li>
+                    -->
                 </ul>
             </li>
         </ul>
