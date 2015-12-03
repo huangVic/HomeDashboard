@@ -11,7 +11,23 @@ router.get('/', function (req, res, next) {
         {src: "/libs/datepicker/locales/bootstrap-datepicker.zh-TW.min.js"},
         {src: "/js/views/inputData.js"}
     ]
+    console.log(req.session)
     res.render('input', {mainId: "inputData", cssList: cssList, jsList: jsList });
 });
+
+
+/***************
+ * 電費資料寫入
+*****************/
+
+router.post('/power/add', function (req, res, next) {
+    console.log(" ---- power/add ----")
+    console.log(" start_time: " +  req.body.start_time)
+    console.log(req.session)
+    res.json({ success: 'ok' , start_time: req.body.start_time, user: req.session.user })
+})
+
+
+
 
 module.exports = router;

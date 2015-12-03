@@ -12,6 +12,7 @@
     {{/each}}
 </head>
 <body>
+    <!-- header -->
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -34,10 +35,21 @@
             </div>
         </div>
     </div>
+    
+    <!-- container -->
     <div class="container main-container {{mainId}}">
         {{{body}}}
     </div>
 
+
+    <!-- footer -->
+    <footer>
+        <div class="row">
+            <div class="copyright">
+                copyright © vic.huang - 2015
+            </div>
+        </div>
+    </footer>
 
     <!-- javascipt -->
     <script src="/libs/jquery-1.11.3.min.js"></script>

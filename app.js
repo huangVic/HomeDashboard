@@ -1,4 +1,5 @@
 var express = require('express');
+var session = require('express-session');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -17,8 +18,19 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+//app.use(express.session({secret: 'ab1ced3fghi4jklmnopqrstuwvxyz'}))
+app.use(session({resave: true, saveUninitialized: true, secret: 'ab1ced3fghi4jklmnopqrstuwvxyz', cookie: { maxAge: 60000 }}));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+/*
+app.use(session({
+  secret: 'ab1ced3fghi4jklmnopqrstuwvxyz',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
+*/
 
 // var routes = require('./routes/index');
 // var input = require('./routes/input');

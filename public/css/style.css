@@ -51,6 +51,34 @@ body{
 }
 
 
+footer{
+   padding: 5px 0px 15px 0px;
+}
+footer .row {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+footer .row .copyright {
+    text-align: center;
+}
+
+.login-panel{
+   max-width: 500px;
+   margin: 25px auto;
+}
+.login-panel .panel-body{
+    padding: 30px 40px;
+}
+.login-panel .form-horizontal input{
+  font-size: 13px;
+}
+.login-panel .control-label{
+   padding-top: 8px;
+}
+.login-panel .form_buttons{
+   margin-top: 15px;
+}   
+
 #InputTabContent .control-label{
    font-size: 14px;
    padding-top: 8px;
@@ -65,3 +93,6 @@ fieldset .form_buttons{
 fieldset .radio{
   font-size: 14px;
 }
+
+
+  
