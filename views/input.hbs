@@ -1,88 +1,204 @@
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#power-bill" data-toggle="tab">power-bill</a></li>
-    <li><a href="#water-bill" data-toggle="tab">water-bill</a></li>
-    <li><a href="#gas-bill" data-toggle="tab">gas-bill</a></li>
+    <li class="active"><a href="#power-bill" data-toggle="tab">電費</a></li>
+    <li><a href="#water-bill" data-toggle="tab">水費</a></li>
+    <li><a href="#gas-bill" data-toggle="tab">瓦斯費</a></li>
+    <li><a href="#network-bill" data-toggle="tab">網路費</a></li>
 </ul>
 <div id="InputTabContent" class="tab-content">
+    <!-- 電費維護 -->
     <div class="tab-pane fade active in" id="power-bill">
-               <form class="form-horizontal">
                 <fieldset>
-                    <legend>Legend</legend>
+                    <legend>電費</legend>
                     <div class="form-group">
-                    <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-                    <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
-                    </div>
+                        <label for="power_start_time" class="col-lg-2 col-md-2 col-sm-2 col-xs-3 control-label">計費區間</label>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4">
+                            <input type="text" class="form-control start_time" id="power_start_time" placeholder="開始時間">
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4">
+                            <input type="text" class="form-control end_time" id="power_end_time" placeholder="結束時間">
+                        </div>
+                        <div style="clear: both;"></div> 
                     </div>
                     <div class="form-group">
-                    <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-                    <div class="col-lg-10">
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                        <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Checkbox
-                        </label>
+                        <label class="col-lg-2 control-label">費用類型</label>
+                        <div class="col-lg-10">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="power_bill_type" id="power_bill_type" value="power" checked>電費
+                                </label>
+                            </div>
+                        </div>
+                        <div style="clear: both;"></div> 
+                    </div>
+                    <div class="form-group">
+                        <label for="power_cost" class="col-lg-2 control-label">費用</label>
+                        <div class="col-lg-10">
+                            <input type="number" class="form-control" id="power_cost" placeholder="支出費用">
+                        </div>
+                        <div style="clear: both;"></div> 
+                    </div>
+                    <div class="form-group">
+                        <label for="power_bill_remark" class="col-lg-2 control-label">備註</label>
+                        <div class="col-lg-10">
+                            <textarea class="form-control" rows="3" id="power_bill_remark"></textarea>
+                            <span class="help-block"></span>
                         </div>
                     </div>
-                    </div>
-                    <div class="form-group">
-                    <label for="textArea" class="col-lg-2 control-label">Textarea</label>
-                    <div class="col-lg-10">
-                        <textarea class="form-control" rows="3" id="textArea"></textarea>
-                        <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
-                    </div>
-                    </div>
-                    <div class="form-group">
-                    <label class="col-lg-2 control-label">Radios</label>
-                    <div class="col-lg-10">
-                        <div class="radio">
-                        <label>
-                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-                            Option one is this
-                        </label>
+
+                    <div class="form-group form_buttons">
+                        <div class="col-lg-12">
+                            <button type="reset" class="btn btn-default" id="power-reset">取消</button>
+                            <button type="submit" class="btn btn-primary" id="power-submit">送出</button>
                         </div>
-                        <div class="radio">
-                        <label>
-                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                            Option two can be something else
-                        </label>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="form-group">
-                    <label for="select" class="col-lg-2 control-label">Selects</label>
-                    <div class="col-lg-10">
-                        <select class="form-control" id="select">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        </select>
-                        <br>
-                        <select multiple="" class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        </select>
-                    </div>
-                    </div>
-                    <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                        <button type="reset" class="btn btn-default">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
                     </div>
                 </fieldset>
-                </form>
     </div>
+    
+    <!-- 水費維護 -->
     <div class="tab-pane fade" id="water-bill">
-        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+                <fieldset>
+                    <legend>自來水費</legend>
+                    <div class="form-group">
+                        <label for="water_start_time" class="col-lg-2 col-md-2 col-sm-2 col-xs-3 control-label">計費區間</label>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4">
+                            <input type="text" class="form-control start_time" id="water_start_time" placeholder="開始時間">
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4">
+                            <input type="text" class="form-control end_time" id="water_end_time" placeholder="結束時間">
+                        </div>
+                        <div style="clear: both;"></div> 
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">費用類型</label>
+                        <div class="col-lg-10">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="water_bill_type" id="water_bill_type" value="water" checked>自來水費
+                                </label>
+                            </div>
+                        </div>
+                        <div style="clear: both;"></div> 
+                    </div>
+                    <div class="form-group">
+                        <label for="water_cost" class="col-lg-2 control-label">費用</label>
+                        <div class="col-lg-10">
+                            <input type="number" class="form-control" id="water_cost" placeholder="支出費用">
+                        </div>
+                        <div style="clear: both;"></div> 
+                    </div>
+                    <div class="form-group">
+                        <label for="water_bill_remark" class="col-lg-2 control-label">備註</label>
+                        <div class="col-lg-10">
+                            <textarea class="form-control" rows="3" id="water_bill_remark"></textarea>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group form_buttons">
+                        <div class="col-lg-12">
+                            <button type="reset" class="btn btn-default" id="water-reset">取消</button>
+                            <button type="submit" class="btn btn-primary" id="water-submit">送出</button>
+                        </div>
+                    </div>
+                </fieldset>
     </div>
+    
+    <!-- 瓦斯費維護 -->
     <div class="tab-pane fade" id="gas-bill">
-        <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+               <fieldset>
+                    <legend>瓦斯費</legend>
+                    <div class="form-group">
+                        <label for="gas_start_time" class="col-lg-2 col-md-2 col-sm-2 col-xs-3 control-label">計費區間</label>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4">
+                            <input type="text" class="form-control start_time" id="gas_start_time" placeholder="開始時間">
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4">
+                            <input type="text" class="form-control end_time" id="gas_end_time" placeholder="結束時間">
+                        </div>
+                        <div style="clear: both;"></div> 
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">費用類型</label>
+                        <div class="col-lg-10">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="gas_bill_type" id="gas_bill_type" value="gas" checked>瓦斯費
+                                </label>
+                            </div>
+                        </div>
+                        <div style="clear: both;"></div> 
+                    </div>
+                    <div class="form-group">
+                        <label for="gas_cost" class="col-lg-2 control-label">費用</label>
+                        <div class="col-lg-10">
+                            <input type="number" class="form-control" id="gas_cost" placeholder="支出費用">
+                        </div>
+                        <div style="clear: both;"></div> 
+                    </div>
+                    <div class="form-group">
+                        <label for="gas_bill_remark" class="col-lg-2 control-label">備註</label>
+                        <div class="col-lg-10">
+                            <textarea class="form-control" rows="3" id="gas_bill_remark"></textarea>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group form_buttons">
+                        <div class="col-lg-12">
+                            <button type="reset" class="btn btn-default" id="gas-reset">取消</button>
+                            <button type="submit" class="btn btn-primary" id="gas-submit">送出</button>
+                        </div>
+                    </div>
+                </fieldset>
+    </div>
+    
+    <!-- 網路費維護 -->
+     <div class="tab-pane fade" id="network-bill">
+                <fieldset>
+                    <legend>網路費</legend>
+                    <div class="form-group">
+                        <label for="network_start_time" class="col-lg-2 col-md-2 col-sm-2 col-xs-3 control-label">計費區間</label>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4">
+                            <input type="text" class="form-control start_time" id="network_start_time" placeholder="開始時間">
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4">
+                            <input type="text" class="form-control end_time" id="network_end_time" placeholder="結束時間">
+                        </div>
+                        <div style="clear: both;"></div> 
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">費用類型</label>
+                        <div class="col-lg-10">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="network_bill_type" id="network_bill_type" value="network" checked>網路費
+                                </label>
+                            </div>
+                        </div>
+                        <div style="clear: both;"></div> 
+                    </div>
+                    <div class="form-group">
+                        <label for="network_cost" class="col-lg-2 control-label">費用</label>
+                        <div class="col-lg-10">
+                            <input type="number" class="form-control" id="network_cost" placeholder="支出費用">
+                        </div>
+                        <div style="clear: both;"></div> 
+                    </div>
+                    <div class="form-group">
+                        <label for="network_bill_remark" class="col-lg-2 control-label">備註</label>
+                        <div class="col-lg-10">
+                            <textarea class="form-control" rows="3" id="network_bill_remark"></textarea>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group form_buttons">
+                        <div class="col-lg-12">
+                            <button type="reset" class="btn btn-default" id="network-reset">取消</button>
+                            <button type="submit" class="btn btn-primary" id="network-submit">送出</button>
+                        </div>
+                    </div>
+                </fieldset>
     </div>
 </div>

@@ -4,6 +4,9 @@
     <title>Home Dashboard</title>
     <link rel='stylesheet' href='/css/bootstrap.parper.min.css' />
     <link rel='stylesheet' href='/css/style.css' />
+    {{#each cssList}}
+        <link rel='stylesheet' href='{{src}}' />
+    {{/each}}
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -28,7 +31,7 @@
             </div>
         </div>
     </div>
-    <div class="container main-container">
+    <div class="container main-container {{mainId}}">
         {{{body}}}
     </div>
 
@@ -36,5 +39,8 @@
     <!-- javascipt -->
     <script src="/libs/jquery-1.11.3.min.js"></script>
     <script src="/libs/bootstrap.min.js"></script>
+    {{#each jsList}}
+        <script src="{{src}}"></script>
+    {{/each}}
 </body>
 </html>
