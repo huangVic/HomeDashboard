@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-    res.render('input', { title: '¸ê®ÆºûÅ@' });
+router.get('/', function (req, res, next) {
+    res.render('input', { title: 'è³‡æ–™ç¶­è­·' });
 });
 
 module.exports = router;

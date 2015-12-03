@@ -11,9 +11,40 @@
 
 body{
     font-family: 'cwTeXHei', serif;
-    padding-top: 70px;
+    padding-top: 85px;
+    background-color: #EFEFEF;
 }
 
+::-webkit-scrollbar {
+      width: 8px;
+}
+::-webkit-scrollbar-track {
+      background-color: rgba(255,255,255,0.2);
+}
+::-webkit-scrollbar-thumb {
+      background-color: rgba(0,0,0,0.2);
+}
+::-webkit-scrollbar-button {
+      background-color: rgba(0,0,0,0.2);
+	  display: none;
+}
+::-webkit-scrollbar-corner {
+      background-color: rgba(255,255,255,0.2);
+}
+
+
+.main-container{
+   margin-bottom: 40px;
+}
 .navbar-nav>li>a{
     font-size: 14px;
+}
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: rgba(255, 255, 255, 0.74);
+}
+.tab-content{
+    background-color: #fff;
+    padding: 20px;
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
