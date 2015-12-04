@@ -94,5 +94,8 @@ var api_url = {
     },
 	water: {
 		add: "/input/water/add"
+	},
+	gas: {
+		add: "/input/gas/add"
 	}
 }
