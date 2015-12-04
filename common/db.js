@@ -1,4 +1,4 @@
-﻿var db = require("parse").Parse;
+﻿var db = require("parse/node");
 
 var config = {
     appId: "xxx",

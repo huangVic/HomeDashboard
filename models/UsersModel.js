@@ -4,35 +4,40 @@
 var USERS = function Users() {
     var exports = {}
     
-    var getCurrentUser = exports.getCurrentUser = function getCurrentUser(callback){
+    // 判斷 Parse Session
+    var currentUser = exports.currentUser = function currentUser(callback) {
         var currentUser = DB.User.current();
         if (currentUser) {
             console.log("currentUser is : ")
             console.log(currentUser)
-        } 
-        
-        if (callback){
+        }
+
+        if (callback) {
             callback(currentUser)
         }
     }
     
+    
+    
+    // 執行 Parse 登入
     var login = exports.login = function login(data, callback) {
-        //a: vichuang
-        //b: b0b1Tag123
         DB.User.logIn(data.username, data.password, {
             success: function (user) {
                 console.log("[Parse][username]: " + user.get("username"));
+                console.log("[Parse][email]: " + user.get("email"));
+                console.log("[Parse][id]: " + user.id);
                 callback(user)
             },
             error: function (user, error) {
-                console.log("[Parse][login fail]: " + error);
-                console.log(user);
+                console.log("[Parse][login fail]: ");
+                console.log("error code: " + error.code);
+                console.log("error message: " + error.message);
                 callback(null)
             }
         });
     }
-    
-    
+
+
     return exports;
 };
 

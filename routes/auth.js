@@ -2,14 +2,20 @@ var express = require('express')
     , router = express.Router();
 var UsersModel = require('../models/UsersModel.js');    
 
+
 //router.use('/index', require('./index'));
 
-/* GET Default page. */
+/******************
+ * 登入頁面
+ * ***************/
 router.get('/', function (req, res) {
-     res.render('auth');
+    res.render('auth');
 });
 
 
+/******************
+ * [POST] 登入
+ * ***************/
 router.post('/login', function (req, res, next) {
     console.log(" ---- auth/login ----")
     console.log(" username: " + req.body.username)
@@ -18,24 +24,29 @@ router.post('/login', function (req, res, next) {
         res.redirect('/index');
         return;
     }
-    
-    if (!req.body.username || !req.body.password){
-       res.json({ success: 'ok' , is_login: false , status: 990, msg: "username or password not empty."})
+
+    if (!req.body.username || !req.body.password) {
+        res.json({ success: 'ok', is_login: false, status: 990, msg: "username or password not empty." })
     }
-    else{
+    else {
         var UsersStore = new UsersModel();
         var params = {
-           username: req.body.username,
-           password: req.body.password
+            username: req.body.username,
+            password: req.body.password
         }
-        UsersStore.login( params, function(result){
-            if (!result){
-                res.json({ success: 'ok' , is_login: false , status: 991, msg: "login fail."})
+        UsersStore.login(params, function (result) {
+            if (!result) {
+                res.json({ success: 'ok', is_login: false, status: 991, msg: "login fail." })
             }
-            else{
-               console.log(" ---- UsersStore.login ----") 
-               console.log(result)
-               res.json({ success: 'ok' , is_login: true , status: 100, msg: "login success."})
+            else {
+                console.log(" ---- UsersStore.login ----")
+                var data = {
+                    id: result.id,
+                    user_name: result.get("username"),
+                    email: result.get("email")
+                }
+                req.session.user = data;
+                res.json({ success: 'ok', is_login: true, status: 100, msg: "login success.", user: data })
             }
         })
     }
