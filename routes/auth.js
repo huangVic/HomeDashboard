@@ -9,7 +9,14 @@ var UsersModel = require('../models/UsersModel.js');
  * 登入頁面
  * ***************/
 router.get('/', function (req, res) {
-    res.render('auth');
+
+    if (req.session.user) {
+        res.redirect('/');
+        return;
+    }
+
+    var jsList = [{ src: "/js/views/authentication.js" }];
+    res.render('auth', { jsList: jsList });
 });
 
 
@@ -20,8 +27,13 @@ router.post('/login', function (req, res, next) {
     console.log(" ---- auth/login ----")
     console.log(" username: " + req.body.username)
     console.log(" password: " + req.body.password)
+    if (req.body.password != undefined) {
+        console.log(" password decode: " + new Buffer(req.body.password, 'base64').toString('binary'))
+        req.body.password = new Buffer(req.body.password, 'base64').toString('binary')
+    }
+
     if (req.session.user) {
-        res.redirect('/index');
+        res.redirect('/');
         return;
     }
 
