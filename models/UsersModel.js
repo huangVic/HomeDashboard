@@ -1,7 +1,7 @@
 ﻿var DB = require('../common/db');
 
 
-var USERS = function Users() {
+var USERS = function USERS() {
     var exports = {}
     
     // 判斷 Parse Session

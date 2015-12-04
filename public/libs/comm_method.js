@@ -85,3 +85,14 @@ restful = {
         }, settings));
     }
 };
+
+
+
+var api_url = {
+	power: {
+		add: "/input/power/add"
+    },
+	water: {
+		add: "/input/water/add"
+	}
+}
