@@ -1,3 +1,6 @@
+
+
+/****************** restful api *********************/
 var ajaxSettings = {
     dataType: 'json'
 };
@@ -99,3 +102,60 @@ var api_url = {
 		add: "/input/gas/add"
 	}
 }
+/****************** / restful api *********************/
+
+
+/**************** handlebar template ******************/
+var loadTemplate = function (html, css, data, template, callback) {
+    
+    var loadHandlebarsTemplate = function (html, inputData, template, callback) {
+        if (html) {
+            if ($("#handlebars-template").length > 0) {
+                $("#handlebars-template").load(html, function (data) {
+                    var templateSource = template == undefined || null ? data : $("#" + template).html();
+                    var handleTemplate = Handlebars.compile(templateSource);
+                    callback(handleTemplate(inputData));
+                });
+            } else {
+                $('<script>', { id: "handlebars-template" }).appendTo('head').ready(function () {
+                    $("#handlebars-template").load(html, function (data) {
+                        var templateSource = template == undefined || null ? data : $("#" + template).html();
+                        var handleTemplate = Handlebars.compile(templateSource);
+                        callback(handleTemplate(inputData));
+                    });
+                })
+            }
+        }
+        else {
+            if ($("#handlebars-common-template").length == 0) {
+                $('<script>', { id: "handlebars-common-template" }).appendTo('head').ready(function () {
+                    var html = "handlebarsTemplate.xml";
+                    $("#handlebars-common-template").load(html, function (data) {
+                        var templateSource = template == undefined || null ? data : $("#" + template).html();
+                        var handleTemplate = Handlebars.compile(templateSource);
+                        callback(handleTemplate(inputData));
+                    });
+                })
+            } else {
+                var templateSource = template == undefined || null ? "" : $("#" + template).html();
+                var handleTemplate = Handlebars.compile(templateSource);
+                callback(handleTemplate(inputData));
+            }
+        }
+    }
+
+    var loadHandlebarsCss = function (css) {
+        if (css) {
+            css += '?_ts=' + new Date().getTime();
+            $('<link>', { rel: 'stylesheet', type: 'text/css', 'href': css }).appendTo('head').ready(function () {
+                loadHandlebarsTemplate(html, data, template, callback);
+            })
+        }
+        else {
+            loadHandlebarsTemplate(html, data, template, callback);
+        }
+    }
+
+    loadHandlebarsCss(css);
+}	
+/**************** / handlebar template ******************/

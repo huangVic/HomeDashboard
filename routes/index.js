@@ -4,6 +4,7 @@ var UsersModel = require('../models/UsersModel.js');
 
 router.use('/auth', require('./auth'));
 router.use('/input', require('./input'));
+router.use('/dataList', require('./dataList'));
 
 /* GET Default page. */
 router.get('/', function (req, res, next) {
