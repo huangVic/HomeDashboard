@@ -7,7 +7,7 @@ var POWER = function POWER() {
 
 
 	// 新增
-	var addItem = exports.addItem = function addItem(data, callback) {
+	var addItemAtHome = exports.addItemAtHome = function addItem(data, callback) {
 		if (!data) {
 			callback(null)
 		}
@@ -64,7 +64,7 @@ var POWER = function POWER() {
 		power.save(data, {
 			success: function (result) {
 				// Execute any logic that should take place after the object is saved.
-				console.log('power object created with objectId: ' + result.id);
+				console.log('<< power addItem >> power object created with objectId: ' + result.id);
 				if (callback) {
 					callback(result);
 				}
@@ -72,7 +72,7 @@ var POWER = function POWER() {
 			error: function (gameScore, error) {
 				// Execute any logic that should take place if the save fails.
 				// error is a Parse.Error with an error code and description.
-				console.log('Failed to create power object, with error code: ' + error.description);
+				console.log('<< power addItem >> Failed to create power object, with error code: ' + error.description);
 				if (callback) {
 					callback(null);
 				}
@@ -83,21 +83,25 @@ var POWER = function POWER() {
 
 
 
-    var getTotalList = exports.getTotalList = function getTotalList() {
+    var getTotalList = exports.getTotalList = function getTotalList(params, callback) {
         var Power = DB.Object.extend("Power");
 		var query = new DB.Query(Power);
-		query.equalTo("playerName", "Dan Stemkoski");
+		query.equalTo("user_id", params.user_id);
+		query.descending("start_time_ms");
+		query.limit(500);
 		query.find({
 			success: function (results) {
-				alert("Successfully retrieved " + results.length + " scores.");
+				console.log("<< power getTotalList >> Successfully retrieved " + results.length + " scores.");
 				// Do something with the returned Parse.Object values
-				for (var i = 0; i < results.length; i++) {
-					var object = results[i];
-					alert(object.id + ' - ' + object.get('playerName'));
+			    if (callback) {
+					callback(results);
 				}
 			},
 			error: function (error) {
-				alert("Error: " + error.code + " " + error.message);
+				console.log("<< power getTotalList >> Error: " + error.code + " " + error.message);
+				if (callback) {
+					callback(null);
+				}
 			}
 		});
     }

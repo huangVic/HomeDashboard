@@ -7,7 +7,7 @@ var WATER = function WATER() {
 
 
 	// 新增
-	var addItem = exports.addItem = function addItem(data, callback) {
+	var addItemAtHome = exports.addItemAtHome = function addItemAtHome(data, callback) {
 		if (!data) {
 			callback(null)
 		}

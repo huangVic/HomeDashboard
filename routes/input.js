@@ -20,7 +20,7 @@ router.get('/', function (req, res, next) {
 
 
 /***************
- * 電費資料寫入
+ * 電費資料寫入(家用)
 *****************/
 
 router.post('/power/add', function (req, res, next) {
@@ -71,14 +71,14 @@ router.post('/power/add', function (req, res, next) {
 	}
 	
 	params.user_id = req.session.user.id;
-
+    params.group = "home";
 	
 	console.log(" PowerStore add params: ")
 	console.log(params)
 
 	var PowerStore = new PowerModel();
 	
-	PowerStore.addItem(params, function (result) {
+	PowerStore.addItemAtHome(params, function (result) {
 		if (!result) {
 			res.json({ success: 'ok' , status: 999, msg: "Failed to create power object" })
 		}
@@ -93,7 +93,7 @@ router.post('/power/add', function (req, res, next) {
 
 
 /***************
- * 水費資料寫入
+ * 水費資料寫入(家用)
 *****************/
 
 router.post('/water/add', function (req, res, next) {
@@ -140,10 +140,11 @@ router.post('/water/add', function (req, res, next) {
 	}
 	
 	params.user_id = req.session.user.id;
-
+    params.group = "home";
+	
 	var WaterStore = new WaterModel();
 	
-	WaterStore.addItem(params, function (result) {
+	WaterStore.addItemAtHome(params, function (result) {
 		if (!result) {
 			res.json({ success: 'ok' , status: 999, msg: "Failed to create water object" })
 		}
@@ -159,7 +160,7 @@ router.post('/water/add', function (req, res, next) {
 
 
 /***************
- * 瓦斯費資料寫入
+ * 瓦斯費資料寫入(家用)
 *****************/
 
 router.post('/gas/add', function (req, res, next) {
@@ -198,11 +199,11 @@ router.post('/gas/add', function (req, res, next) {
 	}
 	
 	params.user_id = req.session.user.id;
-
+    params.group = "home";
 
 	var GasStore = new GasModel();
 	
-	GasStore.addItem(params, function (result) {
+	GasStore.addItemAtHome(params, function (result) {
 		if (!result) {
 			res.json({ success: 'ok' , status: 999, msg: "Failed to create gas object" })
 		}

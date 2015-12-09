@@ -112,21 +112,18 @@ fieldset .radio{
 
 
 /**** data table ***/
-.register_list .dataTables_length,
-.contactUs_list .dataTables_length {
+.dataList-tables .dataTables_length {
     width: 48%;
     float: left;
     margin: 15px 6px;
 }
-.register_list .dataTables_filter,
-.contactUs_list .dataTables_filter{
+.dataList-tables .dataTables_filter{
     width: 48%;
     float: right;
     text-align: right;
     margin: 15px 0px;
 }
-.register_list input[type="search"], 
-.contactUs_list input[type="search"]{
+.dataList-tables input[type="search"]{
     margin-left: 6px;
     padding: 0;
     border: none;
@@ -137,14 +134,12 @@ fieldset .radio{
     font-size: 16px;
 }
 
-.register_list .dataTables_info, 
-.contactUs_list .dataTables_info{
+.dataList-tables .dataTables_info{
     width: 48%;
     float: left;
     margin: 10px 6px;
 }    
-.register_list .dataTables_paginate,
-.contactUs_list .dataTables_paginate{
+.dataList-tables .dataTables_paginate{
     width: 48%;
     float: right;
     text-align: right;
@@ -258,4 +253,62 @@ fieldset .radio{
     background-color: #ECE9E9;
     color: #AFABAB;
 }
-/**** data table ***/
+/**** /data table ***/
+
+
+/**** loading animation ******/
+.spinner {
+  margin: 100px auto;
+  width: 54px;
+  height: 40px;
+  text-align: center;
+  font-size: 10px;
+}
+.spinner span{
+  font-size: 14px;
+}
+.spinner > div {
+  background-color: #848282;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% { 
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}
+/**** /loading ******/

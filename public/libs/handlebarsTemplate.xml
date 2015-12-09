@@ -1,17 +1,34 @@
 <script id="power-dataList" type="text/x-handlebars-template">
-    <table id="personList" class="table table-striped table-hover personList"" cellspacing="0" width="100%"">
+    <table id="powerDataList" class="table table-striped table-hover listTable"" cellspacing="0" width="100%"">
          <thead>
               <tr>
-                 <th>#</th>
-                 <th>用電日期</th>
-                 <th>電子郵件</th>
-                 <th>最喜歡的歌</th>
-                 <th>喜歡原因</th>
-                 <th>建立時間</th>
-                 <th>照片</th>
+                 <th>計費開始日期</th>
+                 <th>計費結束日期</th>
+                 <th>使用度數</th>
+                 <th>本期度數</th>
+                 <th>流動電費</th>
+                 <th>分攤電費</th>
+                 <th>其他費用</th>
+                 <th>總額</th>
+                 <th>備註</th>
+                 <th></th>
               </tr>
           </thead>
           <tbody>
+              {{#each list}}
+                  <tr>
+                    <td>{{start_time}}</td>
+                    <td>{{end_time}}</td>
+                    <td>{{degree}}</td>
+                    <td>{{current_degree}}</td>
+                    <td>{{base_fee}}</td>
+                    <td>{{share_fee}}</td>
+                    <td>{{other_fee}}</td>
+                    <td>{{total}}</td>
+                    <td>{{remark}}</td>
+                    <td></td>
+                  </tr>
+              {{/each}}
           </tbody>
     </table>      
 </script>

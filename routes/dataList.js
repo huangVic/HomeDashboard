@@ -22,4 +22,21 @@ router.get('/', function (req, res, next) {
 
 
 
+router.get('/list/power', function (req, res, next) {
+    //console.log(req.session)
+    var powerStore = new PowerModel();
+    
+    var params = { user_id: req.session.user.id };
+    powerStore.getTotalList(params, function(result){
+        if (!result){
+            res.json({ success: 'ok' , status: 999, msg: "Failed" })
+        }
+        else{
+            res.json({ success: 'ok' , status: 100, msg: "Success.",  list: result})
+        }
+    })
+});
+
+
+
 module.exports = router;

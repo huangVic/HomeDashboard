@@ -2,8 +2,13 @@
 
 $(document).ready(function () {
     console.log(" document ready!");
-
-    loadTemplate( "", "", null, "power-dataList", function(html){
-		$("#power-bill").append(html);
-	});
+    
+	restful.get(api_url.power.totalList, null, function(result){
+		
+		loadTemplate( "", "", result, "power-dataList", function(html){
+			 $("#power-bill-list-loading").remove();
+			 $("#power-bill-list").append(html);
+			 $('#powerDataList').DataTable(dataTable_config);
+		});
+	})
 });
