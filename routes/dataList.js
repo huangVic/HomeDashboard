@@ -21,13 +21,18 @@ router.get('/', function (req, res, next) {
 });
 
 
-
-router.get('/list/power', function (req, res, next) {
+/***************
+ * 電費資料列表 (家用)
+*****************/
+router.get('/home/powerList', function (req, res, next) {
     //console.log(req.session)
     var powerStore = new PowerModel();
     
-    var params = { user_id: req.session.user.id };
-    powerStore.getTotalList(params, function(result){
+    var params = {
+        user_id: req.session.user.id,
+        group: "home"
+    };
+    powerStore.getTotalListAtHome(params, function(result){
         if (!result){
             res.json({ success: 'ok' , status: 999, msg: "Failed" })
         }
@@ -37,6 +42,49 @@ router.get('/list/power', function (req, res, next) {
     })
 });
 
+
+/***************
+ * 水費資料列表 (家用)
+*****************/
+router.get('/home/waterList', function (req, res, next) {
+    //console.log(req.session)
+    var waterStore = new WaterModel();
+    
+    var params = {
+        user_id: req.session.user.id,
+        group: "home"
+    };
+    waterStore.getTotalListAtHome(params, function (result) {
+        if (!result) {
+            res.json({ success: 'ok' , status: 999, msg: "Failed" })
+        }
+        else {
+            res.json({ success: 'ok' , status: 100, msg: "Success.", list: result })
+        }
+    })
+});
+
+
+/***************
+ * 水費資料列表 (家用)
+*****************/
+router.get('/home/gasList', function (req, res, next) {
+    //console.log(req.session)
+    var gasStore = new GasModel();
+    
+    var params = {
+        user_id: req.session.user.id,
+        group: "home"
+    };
+    gasStore.getTotalListAtHome(params, function (result) {
+        if (!result) {
+            res.json({ success: 'ok' , status: 999, msg: "Failed" })
+        }
+        else {
+            res.json({ success: 'ok' , status: 100, msg: "Success.", list: result })
+        }
+    })
+});
 
 
 module.exports = router;

@@ -83,22 +83,27 @@ var POWER = function POWER() {
 
 
 
-    var getTotalList = exports.getTotalList = function getTotalList(params, callback) {
+    var getTotalListAtHome = exports.getTotalListAtHome = function getTotalListAtHome(params, callback) {
         var Power = DB.Object.extend("Power");
-		var query = new DB.Query(Power);
-		query.equalTo("user_id", params.user_id);
+        var query = new DB.Query(Power);
+
+        query.equalTo("user_id", params.user_id);
+        if (params.group) {
+            query.equalTo("group", params.group);
+        }
+
 		query.descending("start_time_ms");
 		query.limit(500);
 		query.find({
 			success: function (results) {
-				console.log("<< power getTotalList >> Successfully retrieved " + results.length + " scores.");
+				console.log("<< power getTotalListAtHome >> Successfully retrieved " + results.length + " scores.");
 				// Do something with the returned Parse.Object values
 			    if (callback) {
 					callback(results);
 				}
 			},
 			error: function (error) {
-				console.log("<< power getTotalList >> Error: " + error.code + " " + error.message);
+				console.log("<< power getTotalListAtHome >> Error: " + error.code + " " + error.message);
 				if (callback) {
 					callback(null);
 				}

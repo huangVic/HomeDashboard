@@ -51,9 +51,10 @@ $( document ).ready(function() {
 			total: total,
 			remark: remark
 		}
-		
+        
+        $(this).prop("disabled", true)
 
-		restful.post(api_url.power.add, params, function(result){
+		restful.post(api_url.power.home.add, params, function(result){
 			console.log(result)
 			if (result.status == 100) {
 				alert("資料已新增!!")
@@ -61,7 +62,8 @@ $( document ).ready(function() {
 			}
 			else {
 				alert("資料新增失敗!! \r\n" + result.msg)
-			}
+            }
+            $("#power-submit").prop("disabled", false)
         })
 	})
 
@@ -107,8 +109,8 @@ $( document ).ready(function() {
 			remark: remark
 		}
 		
-
-		restful.post(api_url.water.add, params, function (result) {
+        $(this).prop("disabled", true)
+		restful.post(api_url.water.home.add, params, function (result) {
 			console.log(result)
 			if (result.status == 100) {
 				alert("資料已新增!!")
@@ -116,7 +118,8 @@ $( document ).ready(function() {
 			}
 			else { 
 				alert("資料新增失敗!! \r\n" + result.msg)
-			}
+            }
+            $("#water-submit").prop("disabled", false)
 		})
 	})
 
@@ -155,9 +158,10 @@ $( document ).ready(function() {
 			current_degree: current_degree,
 			total: total,
 			remark: remark
-		}
+        }
 
-		restful.post(api_url.gas.add, params, function (result) {
+        $(this).prop("disabled", true)
+		restful.post(api_url.gas.home.add, params, function (result) {
 			console.log(result)
 			if (result.status == 100) {
 				alert("資料已新增!!")
@@ -165,7 +169,8 @@ $( document ).ready(function() {
 			}
 			else {
 				alert("資料新增失敗!! \r\n" + result.msg)
-			}
+            }
+            $("#gas-submit").prop("disabled", false)
 		})
 	})
 });

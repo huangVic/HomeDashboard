@@ -79,9 +79,37 @@ var GAS = function GAS() {
 			}
 		});
 	    
-	}
+    }
+    
 
 
+    var getTotalListAtHome = exports.getTotalListAtHome = function getTotalListAtHome(params, callback) {
+        var Gas = DB.Object.extend("Gas");
+        var query = new DB.Query(Gas);
+        
+        query.equalTo("user_id", params.user_id);
+        if (params.group) {
+            query.equalTo("group", params.group);
+        }
+        
+        query.descending("start_time_ms");
+        query.limit(500);
+        query.find({
+            success: function (results) {
+                console.log("<< gas getTotalListAtHome >> Successfully retrieved " + results.length + " scores.");
+                // Do something with the returned Parse.Object values
+                if (callback) {
+                    callback(results);
+                }
+            },
+            error: function (error) {
+                console.log("<< gas getTotalListAtHome >> Error: " + error.code + " " + error.message);
+                if (callback) {
+                    callback(null);
+                }
+            }
+        });
+    }
 
 
 	return exports;

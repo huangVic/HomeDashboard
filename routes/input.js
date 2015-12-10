@@ -23,8 +23,8 @@ router.get('/', function (req, res, next) {
  * 電費資料寫入(家用)
 *****************/
 
-router.post('/power/add', function (req, res, next) {
-    console.log(" ---- power/add ----")
+router.post('/home/powerAdd', function (req, res, next) {
+    console.log(" ---- home/powerAdd ----")
 	
 	var params = {};
 	
@@ -96,8 +96,8 @@ router.post('/power/add', function (req, res, next) {
  * 水費資料寫入(家用)
 *****************/
 
-router.post('/water/add', function (req, res, next) {
-	console.log(" ---- water/add ----")
+router.post('/home/waterAdd', function (req, res, next) {
+	console.log(" ---- home/waterAdd ----")
 	
 	var params = {};
 
@@ -163,8 +163,8 @@ router.post('/water/add', function (req, res, next) {
  * 瓦斯費資料寫入(家用)
 *****************/
 
-router.post('/gas/add', function (req, res, next) {
-	console.log(" ---- gas/add ----")
+router.post('/home/gasAdd', function (req, res, next) {
+	console.log(" ---- home/gasAdd ----")
 	
 	var params = {};
 

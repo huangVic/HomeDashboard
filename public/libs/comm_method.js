@@ -93,16 +93,23 @@ restful = {
 
 var api_url = {
     power: {
-        add: "/input/power/add",
-        totalList: "/dataList/list/power"
+        home: {
+            add: "/input/home/powerAdd",
+            totalList: "/dataList/home/powerList"
+        }
     },
     water: {
-        add: "/input/water/add",
-        totalList: "/data/list/water"
+        home: {
+            add: "/input/home/waterAdd",
+            totalList: "/dataList/home/waterList"
+        }
+        
     },
     gas: {
-        add: "/input/gas/add",
-        totalList: "/data/list/gas"
+        home: {
+            add: "/input/home/gasAdd",
+            totalList: "/dataList/home/gasList"
+        }
     }
 }
 /****************** / restful api *********************/
