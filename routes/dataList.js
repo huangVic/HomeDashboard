@@ -22,7 +22,7 @@ router.get('/', function (req, res, next) {
 
 
 /***************
- * ¹q¶O¸ê®Æ¦Cªí (®a¥Î)
+ * é›»è²»è³‡æ–™åˆ—è¡¨(å®¶ç”¨)
 *****************/
 router.get('/home/powerList', function (req, res, next) {
     //console.log(req.session)
@@ -44,7 +44,7 @@ router.get('/home/powerList', function (req, res, next) {
 
 
 /***************
- * ¤ô¶O¸ê®Æ¦Cªí (®a¥Î)
+ * æ°´è²»è³‡æ–™åˆ—è¡¨(å®¶ç”¨)
 *****************/
 router.get('/home/waterList', function (req, res, next) {
     //console.log(req.session)
@@ -66,7 +66,7 @@ router.get('/home/waterList', function (req, res, next) {
 
 
 /***************
- * ¤ô¶O¸ê®Æ¦Cªí (®a¥Î)
+ * ç“¦æ–¯è²»è³‡æ–™åˆ—è¡¨(å®¶ç”¨)
 *****************/
 router.get('/home/gasList', function (req, res, next) {
     //console.log(req.session)
