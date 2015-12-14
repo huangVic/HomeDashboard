@@ -110,6 +110,11 @@ var api_url = {
             add: "/input/home/gasAdd",
             totalList: "/dataList/home/gasList"
         }
+    },
+    all: {
+       home:{
+           totalList: "/home/totalList"
+       } 
     }
 }
 /****************** / restful api *********************/

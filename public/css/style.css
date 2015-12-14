@@ -312,3 +312,40 @@ fieldset .radio{
   }
 }
 /**** /loading ******/
+
+.home-section{
+   background-color: transparent;
+   box-shadow: none;
+}
+   
+
+.alert-primary{
+   color: #ffffff;
+   background-color: #2196f3;
+   border-color: #2196f3;
+}
+.alert-primary2{
+   color: #ffffff;
+   background-color: #67c2ef;
+   border-color: #67c2ef;
+}
+.alert-success2{
+   color: #ffffff;
+   background-color:  #bdea74;
+   border-color:  #bdea74;
+}
+.alert-warning2{
+   color: #ffffff;
+   background-color:  #eae874;
+   border-color:  #eae874;
+}
+.alert-danger2{
+   color: #ffffff;
+   background-color:  #ff5454;
+   border-color:  #ff5454;
+}
+.alert-info2{
+  color: #ffffff;
+   background-color:  #945AAF;
+   border-color:  #945AAF;
+}
