@@ -1,23 +1,16 @@
 
+var store = new STORE();
+
 $(document).ready(function () {
-    console.log(" document ready!"); 
-    loadTotalList()
+    console.log(" document ready!");
+
+    store.loadDataFromServer(api_url.all.home.totalList, function (result) {
+        if (result) {
+            store.dataToStorage(result);
+        }
+    })
+
 });
 
 
 
-function loadTotalList(callback) {
-    restful.get(api_url.all.home.totalList, null, function (result) {
-        console.log(" << total list >>")
-        console.log(result)
-        loadTemplate("", "", result, "water-dataList", function (html) {
-            $("#spinner-loading").remove();
-            $("#water-bill-list").append(html);
-            $('#waterDataList').DataTable(dataTable_config);
-            
-            if (callback && typeof callback === "function") {
-                callback()
-            }
-        });
-    })
-}

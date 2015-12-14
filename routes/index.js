@@ -23,6 +23,7 @@ router.get('/', function (req, res, next) {
 
         var jsList = [
                 { src: "https://www.google.com/jsapi" },
+                { src: "/js/stores/dataStore.js" },
                 { src: "/js/views/indexList.js" }
         ];
 
@@ -84,10 +85,10 @@ router.get('/home/totalList', function (req, res, next) {
         }
 
         function startLoadData() {
-                console.log(" << startLoadData >>")
+                console.log(" <<----- startLoadData ----->> ")
                 getPowerList()
         }
-        
+
         startLoadData();
 });
 

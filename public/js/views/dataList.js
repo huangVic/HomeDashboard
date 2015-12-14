@@ -57,6 +57,7 @@ function getActiveTab(type){
 
 // power
 function loadPowerList(callback){
+    
     restful.get(api_url.power.home.totalList, null, function (result) {  
         loadTemplate("", "", result, "power-dataList", function (html) {
             $("#spinner-loading").remove();

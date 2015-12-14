@@ -2,7 +2,7 @@
 
 $(document).ready(function () {
     console.log(" document ready!");
-
+	
     $("form").submit(function (e) {
 		e.preventDefault();
 		//console.log("submit ");
