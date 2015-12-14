@@ -1,0 +1,11 @@
+.home-section .section-icons{
+	text-align: right;
+	pading: 0px;
+}
+.home-section .section-icons .fa{
+	font-size: 40px;
+	opacity: 0.75;
+}
+.home-section .section-info{
+	font-size: 32px;
+}

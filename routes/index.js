@@ -21,13 +21,16 @@ router.get('/', function (req, res, next) {
                 return;
         }
 
+        var cssList = [
+                { src: "/css/index.css" }
+        ]
         var jsList = [
                 { src: "https://www.google.com/jsapi" },
                 { src: "/js/stores/dataStore.js" },
                 { src: "/js/views/indexList.js" }
         ];
 
-        res.render('index', { mainId: "home", user: req.session.user, jsList: jsList });
+        res.render('index', { mainId: "home", user: req.session.user, cssList:cssList, jsList: jsList });
 });
 
 
