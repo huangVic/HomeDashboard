@@ -1,36 +1,54 @@
 <!-- section 1 --->
-<div class="panel panel-default home-section">
-  <div class="panel-body">
-    <div class="row">
-      最新資訊
-    </div>
+ <div class="row news-title">
+   <div class="col-md-12 col-sm-12">最新資訊</div>
+ </div>
+<div id="home-section" class="panel panel-default home-section">
+  <div id="home-section-body" class="panel-body home-section-body" >
     <div class="row">
       <div class="col-md-4 col-sm-4">
+        <div class="row">
+          <div class="col-sm-12 type-title">電費</div>
+        </div>
         <div class="alert alert-dismissible alert-primary2">
           <div class="row">
-            <div class="col-sm-12 section-date">2015/9/10 - 2015/11/10</div>
+            <div class="col-sm-12 section-date power-date">{{year}}年</div>
           </div>
           <div class="row">
-            <div class="col-sm-8 section-info">
-                NT $130
-            </div>
-            <div class="col-sm-4 section-icons">
-                 <i class="fa fa-plug"></i>
-                 <!--div style="text-align: center;">電費</div-->
-            </div>
+            <div class="col-sm-8 col-xs-8 section-info power-total">NT $0</div>
+            <div class="col-sm-4 col-xs-4 section-icons"><i class="fa fa-plug"></i></div>
           </div>
         </div>
       </div>
       <div class="col-md-4 col-sm-4">
+        <div class="row">
+          <div class="col-sm-12 type-title">水費</div>
+        </div>
         <div class="alert alert-dismissible alert-danger2">
-          <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
+          <div class="row">
+            <div class="col-sm-12 section-date water-date">{{year}}年</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-8 col-xs-8 section-info water-total">NT $0</div>
+            <div class="col-sm-4 col-xs-4 section-icons"><i class="fa fa-tint"></i></div>
+          </div>
         </div>
       </div>
       <div class="col-md-4 col-sm-4">
+        <div class="row">
+          <div class="col-sm-12 type-title">瓦斯費</div>
+        </div>
         <div class="alert alert-dismissible alert-info2">
-          <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
+          <div class="row">
+            <div class="col-sm-12 section-date gas-date">{{year}}年</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-8 col-xs-8 section-info gas-total">NT $0</div>
+            <div class="col-sm-4 col-xs-4 section-icons"><i class="fa fa-tasks"></i></div>
+          </div>
         </div>
       </div>
     </div>
+    
+    <div id="power-chart" style="width:100%; height:320px;"></div>
   </div>
 </div>

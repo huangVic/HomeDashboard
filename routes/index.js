@@ -26,11 +26,20 @@ router.get('/', function (req, res, next) {
         ]
         var jsList = [
                 { src: "https://www.google.com/jsapi" },
+                { src: "/libs/handlebars-v4.0.4.js" },
                 { src: "/js/stores/dataStore.js" },
                 { src: "/js/views/indexList.js" }
         ];
+        
+        var year = new Date().getFullYear()
 
-        res.render('index', { mainId: "home", user: req.session.user, cssList:cssList, jsList: jsList });
+        res.render('index', { 
+                mainId: "home", 
+                user: req.session.user, 
+                cssList:cssList, 
+                jsList: jsList,
+                year: year  
+        });
 });
 
 
@@ -38,8 +47,9 @@ router.get('/', function (req, res, next) {
 router.get('/home/totalList', function (req, res, next) {
 
         var totalList = {
-                home: { power: [], water: [], gas: [] },
-                store: { power: [], water: [], gas: [] }
+            power: [], 
+            water: [], 
+            gas: [] ,
         }
 
         var params = {
@@ -52,7 +62,7 @@ router.get('/home/totalList', function (req, res, next) {
                 var gasStore = new GasModel();
                 gasStore.getTotalListAtHome(params, function (result) {
                         if (result && result.length > 0) {
-                                totalList.home.gas = result
+                                totalList.gas = result
                         }
                         finishLoad()
                 })
@@ -63,7 +73,7 @@ router.get('/home/totalList', function (req, res, next) {
                 var waterStore = new WaterModel();
                 waterStore.getTotalListAtHome(params, function (result) {
                         if (result && result.length > 0) {
-                                totalList.home.water = result
+                                totalList.water = result
                         }
                         geGasList()
                 })
@@ -74,7 +84,7 @@ router.get('/home/totalList', function (req, res, next) {
                 var powerStore = new PowerModel();
                 powerStore.getTotalListAtHome(params, function (result) {
                         if (result && result.length > 0) {
-                                totalList.home.power = result
+                                totalList.power = result
                         }
                         getWaterList()
                 })

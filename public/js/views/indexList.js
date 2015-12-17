@@ -1,16 +1,156 @@
 
+google.load('visualization', '1', {packages: ['corechart', 'bar']});
 var store = new STORE();
 
 $(document).ready(function () {
     console.log(" document ready!");
 
-    store.loadDataFromServer(api_url.all.home.totalList, function (result) {
-        if (result) {
-            store.dataToStorage(result);
-        }
+    loadTemplate("", "", null, "spinner-loading-template", function (html) {
+        $("#home-section").append(html);
+        loadHomeData();
     })
 
 });
 
 
 
+
+function loadHomeData() {
+    store.loadDataFromServer(api_url.all.home.totalList, function (result) {
+        if (result) {
+            store.dataToStorage(result);
+            
+           
+            
+            // 最新資訊:電費
+            if ( result.totalList.power && result.totalList.power.length > 0){
+                var poweritem = result.totalList.power[0];
+                // 日期
+                var powerStartDataArr = poweritem.start_time.split("/")
+                var powerEndDataArr = poweritem.end_time.split("/")
+                var powerDateStr = powerStartDataArr[0] + "年 " + powerStartDataArr[1] + "月 - " + powerEndDataArr[1] + "月";
+                $(".power-date").text(powerDateStr);
+                
+                //費用
+                if(poweritem.total != undefined){
+                  $(".power-total").text("NT $" + formatNumber(poweritem.total));  
+                }
+            }
+            
+            // 最新資訊:水費
+            if ( result.totalList.water && result.totalList.water.length > 0){
+                var wateritem = result.totalList.water[0];
+                // 日期
+                var waterStartDataArr = wateritem.start_time.split("/")
+                var waterEndDataArr = wateritem.end_time.split("/")
+                var waterDateStr = waterStartDataArr[0] + "年 " + waterStartDataArr[1] + "月 - " + waterEndDataArr[1] + "月";
+                $(".water-date").text(waterDateStr);
+                
+                //費用
+                if(wateritem.total != undefined){
+                  $(".water-total").text("NT $" + formatNumber(wateritem.total));  
+                }
+            }
+            
+            // 最新資訊:瓦斯費
+            if ( result.totalList.gas && result.totalList.gas.length > 0){
+                var gasitem = result.totalList.gas[0];
+                // 日期
+                var gasStartDataArr = gasitem.start_time.split("/")
+                var gasEndDataArr = gasitem.end_time.split("/")
+                var gasDateStr = gasStartDataArr[0] + "年 " + gasStartDataArr[1] + "月 - " + gasEndDataArr[1] + "月";
+                $(".gas-date").text(gasDateStr);
+                
+                 //費用
+                if(gasitem.total != undefined){
+                  $(".gas-total").text("NT $" + formatNumber(gasitem.total));  
+                }
+                
+            }
+            
+            // 移除"載入中"
+            $("#spinner-loading").remove();
+            $("#home-section-body").show();
+            
+             drawPowerTrendlines();
+        }
+    })
+}
+
+function drawPowerTrendlines(){
+    
+       var data = new google.visualization.DataTable();
+      data.addColumn('string', '日期');
+      data.addColumn('number', '電費');
+      data.addColumn('number', '水費');
+      data.addColumn('number', '瓦斯費');
+      data.addColumn('number', '總計');
+
+      data.addRows([
+          ['2014', 1000, 400, 200, 1001],
+          ['2015', 1170, 460, 250, 2013],
+          ['2016', 660, 1120, 300, 2331],
+          ['2017', 1030, 540, 350, 1245]
+      ]);
+
+      var options = {
+          title: '今年度統計資料',
+          subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+          backgroundColor: "transparent",
+          seriesType: 'bars',
+          series: {3: {type: 'line'}},
+          annotations: {
+    boxStyle: {
+      // Color of the box outline.
+      stroke: '#888',
+      // Thickness of the box outline.
+      strokeWidth: 1,
+      // x-radius of the corner curvature.
+      rx: 10,
+      // y-radius of the corner curvature.
+      ry: 10,
+      // Attributes for linear gradient fill.
+      gradient: {
+        // Start color for gradient.
+        color1: '#fbf6a7',
+        // Finish color for gradient.
+        color2: '#33b679',
+        // Where on the boundary to start and
+        // end the color1/color2 gradient,
+        // relative to the upper left corner
+        // of the boundary.
+        x1: '0%', y1: '0%',
+        x2: '100%', y2: '100%',
+        // If true, the boundary for x1,
+        // y1, x2, and y2 is the box. If
+        // false, it's the entire chart.
+        useObjectBoundingBoxUnits: true
+      }
+    }
+  }
+      };
+
+ 
+    //   var options = {
+    //     title: "",
+    //     trendlines: {
+    //       0: {type: 'linear', lineWidth: 5, opacity: .3},
+    //       1: {type: 'exponential', lineWidth: 10, opacity: .3}
+    //     },
+    //     hAxis: {
+    //       title: 'year',
+    //       format: 'h:mm a',
+    //       viewWindow: {
+    //         min: [7, 30, 0],
+    //         max: [17, 30, 0]
+    //       }
+    //     },
+    //     vAxis: {
+    //       title: 'Rating (scale of 1-10)'
+    //     },
+    //     backgroundColor: "transparent"
+    //   };
+
+      var chart = new google.visualization.ComboChart(document.getElementById('power-chart'));
+      chart.draw(data, options);
+}
