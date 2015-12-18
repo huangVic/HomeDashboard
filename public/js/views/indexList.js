@@ -20,7 +20,8 @@ function loadHomeData() {
         if (result) {
             store.dataToStorage(result);
             
-           
+            var baseYear = new Date().getFullYear();
+          
             
             // 最新資訊:電費
             if ( result.totalList.power && result.totalList.power.length > 0){
@@ -35,7 +36,12 @@ function loadHomeData() {
                 if(poweritem.total != undefined){
                   $(".power-total").text("NT $" + formatNumber(poweritem.total));  
                 }
+                
+                
+               
             }
+            
+            //console.log(dataSet)
             
             // 最新資訊:水費
             if ( result.totalList.water && result.totalList.water.length > 0){
@@ -72,12 +78,64 @@ function loadHomeData() {
             $("#spinner-loading").remove();
             $("#home-section-body").show();
             
-             drawPowerTrendlines();
+            
+            
+             
+            var dataSet = {
+                power:{},
+                water:{},
+                gas:{}
+            }
+             
+             // 彙整畫圖資料
+            for (var i = 1; i <= 12; i++) {
+                 
+                 dataSet.power[i] = 0; 
+                 dataSet.water[i] = 0; 
+                 dataSet.gas[i] = 0;
+                 
+                 // power
+                 for (var j = 0; j < result.totalList.power.length; j++) {
+                      var _pItem = result.totalList.power[j];
+                      var _pItem_start_time_arr = _pItem.start_time.split("/")
+                        
+                      // 判斷年月相等
+                      if (parseInt(_pItem_start_time_arr[0]) == baseYear && parseInt(_pItem_start_time_arr[1]) == i){
+                          dataSet.power[i] = parseInt(_pItem.total);
+                      }
+                 }
+                 
+                 // water
+                 for (var k = 0; k < result.totalList.water.length; k++) {
+                      var _wItem = result.totalList.water[k];
+                      var _wItem_start_time_arr = _wItem.start_time.split("/")
+                          
+                      // 判斷年月相等
+                      if (parseInt(_wItem_start_time_arr[0]) == baseYear && parseInt(_wItem_start_time_arr[1]) == i){
+                          dataSet.water[i] = parseInt(_wItem.total);
+                      }
+                 }
+                 
+                 // gas
+                 for (var l = 0; l < result.totalList.gas.length; l++) {
+                      var _gItem = result.totalList.gas[l];
+                      var _gItem_start_time_arr = _gItem.start_time.split("/")
+                          
+                      // 判斷年月相等
+                      if (parseInt(_gItem_start_time_arr[0]) == baseYear && parseInt(_gItem_start_time_arr[1]) == i){
+                          dataSet.gas[i] = parseInt(_gItem.total);
+                      }
+                 }
+                 
+            }
+            
+            //console.log(dataSet)
+            drawPowerTrendlines(baseYear, dataSet);
         }
     })
 }
 
-function drawPowerTrendlines(){
+function drawPowerTrendlines(baseYear, dataList){
     
        var data = new google.visualization.DataTable();
       data.addColumn('string', '日期');
@@ -86,48 +144,70 @@ function drawPowerTrendlines(){
       data.addColumn('number', '瓦斯費');
       data.addColumn('number', '總計');
 
-      data.addRows([
-          ['2014', 1000, 400, 200, 1001],
-          ['2015', 1170, 460, 250, 2013],
-          ['2016', 660, 1120, 300, 2331],
-          ['2017', 1030, 540, 350, 1245]
-      ]);
+
+      
+      var data_array = [];
+      
+      for (var i = 1; i <= 12; i++){
+         
+          data_array.push([ 
+              baseYear + '/' + i, 
+              dataList.power[i], 
+              dataList.water[i], 
+              dataList.gas[i], 
+              (dataList.power[i] + dataList.water[i] + dataList.gas[i])
+         ])
+      }
+     
+      data.addRows(data_array)
+    //   data.addRows([
+    //       ['2014', 1000, 400, 200, 1001],
+    //       ['2015', 1170, 460, 250, 2013],
+    //       ['2016', 660, 1120, 300, 2331],
+    //       ['2017', 1030, 540, 350, 1245]
+    //   ]);
 
       var options = {
-          title: '今年度統計資料',
-          subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-          backgroundColor: "transparent",
-          seriesType: 'bars',
-          series: {3: {type: 'line'}},
-          annotations: {
-    boxStyle: {
-      // Color of the box outline.
-      stroke: '#888',
-      // Thickness of the box outline.
-      strokeWidth: 1,
-      // x-radius of the corner curvature.
-      rx: 10,
-      // y-radius of the corner curvature.
-      ry: 10,
-      // Attributes for linear gradient fill.
-      gradient: {
-        // Start color for gradient.
-        color1: '#fbf6a7',
-        // Finish color for gradient.
-        color2: '#33b679',
-        // Where on the boundary to start and
-        // end the color1/color2 gradient,
-        // relative to the upper left corner
-        // of the boundary.
-        x1: '0%', y1: '0%',
-        x2: '100%', y2: '100%',
-        // If true, the boundary for x1,
-        // y1, x2, and y2 is the box. If
-        // false, it's the entire chart.
-        useObjectBoundingBoxUnits: true
-      }
-    }
-  }
+        title: '今年度統計資料',
+        subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+        backgroundColor: "transparent",
+        seriesType: 'bars',
+        series: { 3: { type: 'area' } },
+        hAxis: {
+          gridlines: { color: '#000', count: 12 }
+        },
+        vAxis: { gridlines: { count: 8 } }
+        /*
+        annotations: {
+          boxStyle: {
+            // Color of the box outline.
+            stroke: '#888',
+            // Thickness of the box outline.
+            strokeWidth: 1,
+            // x-radius of the corner curvature.
+            rx: 10,
+            // y-radius of the corner curvature.
+            ry: 10,
+            // Attributes for linear gradient fill.
+            gradient: {
+              // Start color for gradient.
+              color1: '#fbf6a7',
+              // Finish color for gradient.
+              color2: '#33b679',
+              // Where on the boundary to start and
+              // end the color1/color2 gradient,
+              // relative to the upper left corner
+              // of the boundary.
+              x1: '0%', y1: '0%',
+              x2: '100%', y2: '100%',
+              // If true, the boundary for x1,
+              // y1, x2, and y2 is the box. If
+              // false, it's the entire chart.
+              useObjectBoundingBoxUnits: true
+            }
+          }
+        },*/
+        
       };
 
  
@@ -152,5 +232,8 @@ function drawPowerTrendlines(){
     //   };
 
       var chart = new google.visualization.ComboChart(document.getElementById('power-chart'));
+       google.visualization.events.addListener(chart, 'ready', function(){
+           console.log(11111111)
+       });
       chart.draw(data, options);
 }
