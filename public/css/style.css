@@ -38,7 +38,7 @@ body{
    margin-bottom: 40px;
 }
 .navbar-nav>li>a{
-    font-size: 14px;
+    font-size: 15px;
 }
 .navbar-inverse .navbar-toggle .icon-bar {
     background-color: rgba(255, 255, 255, 0.74);
@@ -48,6 +48,10 @@ body{
     padding: 20px;
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-brand{
+  font-weight: 600;
 }
 
 .inputData{
