@@ -21,7 +21,7 @@ function loadHomeData() {
             store.dataToStorage(result);
             
             var baseYear = new Date().getFullYear();
-          
+            var lastYear = baseYear - 1;
             
             // 最新資訊:電費
             if ( result.totalList.power && result.totalList.power.length > 0){
@@ -81,13 +81,67 @@ function loadHomeData() {
             
             
              
-            var dataSet = {
-                power:{},
-                water:{},
-                gas:{}
+            var dataSet = [];
+             
+             
+            // 彙整畫圖資料
+            for (var y = lastYear; y <= baseYear; y++ ) {
+                
+                var yearItem = {
+                    year: y,
+                    month: []
+                }
+                
+                for (var i = 1; i <= 12; i++) {
+                    var monthItem = {
+                        month: i,
+                        power: 0,
+                        water: 0,
+                        gas: 0
+                    }
+                    // -------- power -----------
+                    for (var j = 0; j < result.totalList.power.length; j++) {
+                        var _pItem = result.totalList.power[j];
+                        var _pItem_start_time_arr = _pItem.start_time.split("/")
+                        
+                        // 判斷年月相等
+                        if (parseInt(_pItem_start_time_arr[0]) == y && parseInt(_pItem_start_time_arr[1]) == i) {
+                            monthItem.power = parseInt(_pItem.total);
+                        }
+                    }
+                    
+                    // water
+                    for (var k = 0; k < result.totalList.water.length; k++) {
+                        var _wItem = result.totalList.water[k];
+                        var _wItem_start_time_arr = _wItem.start_time.split("/")
+                          
+                        // 判斷年月相等
+                        if (parseInt(_wItem_start_time_arr[0]) == y && parseInt(_wItem_start_time_arr[1]) == i) {
+                            monthItem.water = parseInt(_wItem.total);
+                        }
+                    }
+                    
+                    // gas
+                    for (var l = 0; l < result.totalList.gas.length; l++) {
+                        var _gItem = result.totalList.gas[l];
+                        var _gItem_start_time_arr = _gItem.start_time.split("/")
+                          
+                        // 判斷年月相等
+                        if (parseInt(_gItem_start_time_arr[0]) == y && parseInt(_gItem_start_time_arr[1]) == i) {
+                            monthItem.gas = parseInt(_gItem.total);
+                        }
+                    }
+                    
+                    yearItem.month.push(monthItem);
+                }
+                
+                dataSet.push(yearItem);
             }
              
+             
+             
              // 彙整畫圖資料
+             /*
             for (var i = 1; i <= 12; i++) {
                  
                  dataSet.power[i] = 0; 
@@ -127,15 +181,15 @@ function loadHomeData() {
                       }
                  }
                  
-            }
+            }*/
             
-            //console.log(dataSet)
-            drawPowerTrendlines(baseYear, dataSet);
+            console.log(dataSet)
+            drawPowerTrendlines(dataSet);
         }
     })
 }
 
-function drawPowerTrendlines(baseYear, dataList){
+function drawPowerTrendlines(dataList){
     
        var data = new google.visualization.DataTable();
       data.addColumn('string', '日期');
@@ -148,16 +202,18 @@ function drawPowerTrendlines(baseYear, dataList){
       
       var data_array = [];
       
-      for (var i = 1; i <= 12; i++){
-         
-          data_array.push([ 
-              baseYear + '/' + i, 
-              dataList.power[i], 
-              dataList.water[i], 
-              dataList.gas[i], 
-              (dataList.power[i] + dataList.water[i] + dataList.gas[i])
-         ])
+      for(var y = 0; y < dataList.length; y++) {
+          for (var i = 1; i <= 12; i++){
+                data_array.push([ 
+                    dataList[y].year + '/' + dataList[y].month[i-1].month, 
+                    dataList[y].month[i-1].power, 
+                    dataList[y].month[i-1].water, 
+                    dataList[y].month[i-1].gas, 
+                    (dataList[y].month[i-1].power + dataList[y].month[i-1].water + dataList[y].month[i-1].gas)
+                ])
+           } 
       }
+      
      
       data.addRows(data_array)
     //   data.addRows([
