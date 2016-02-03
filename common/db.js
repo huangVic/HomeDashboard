@@ -1,12 +1,12 @@
-﻿var db = require("parse/node");
+﻿var db = require('avoscloud-sdk');
 
 var config = {
-    appId: process.env.PARSE_APP_ID || 'myAppId',
-    key: process.env.PARSE_MASTER_KEY || 'myMasterKey'
+    appId: process.env.AVOS_CLOUD_APP_ID || 'my_app_id',
+    key: process.env.AVOS_CLOUD_MASTER_KEY || 'my_master_key'
 };
 
 console.log(" ==================================== ");
-console.log(" Parse: " + config.appId + " | " + config.key);
+console.log(" AVOS: " + config.appId + " | " + config.key);
 console.log(" ==================================== ");
 
 

@@ -54,6 +54,7 @@ router.post('/login', function (req, res, next) {
                 console.log(" ---- UsersStore.login ----")
                 var data = {
                     id: result.id,
+                    sessionToken: result._sessionToken,
                     user_name: result.get("username"),
                     email: result.get("email")
                 }

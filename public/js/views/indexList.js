@@ -139,51 +139,8 @@ function loadHomeData() {
             }
              
              
-             
-             // 彙整畫圖資料
-             /*
-            for (var i = 1; i <= 12; i++) {
-                 
-                 dataSet.power[i] = 0; 
-                 dataSet.water[i] = 0; 
-                 dataSet.gas[i] = 0;
-                 
-                 // power
-                 for (var j = 0; j < result.totalList.power.length; j++) {
-                      var _pItem = result.totalList.power[j];
-                      var _pItem_start_time_arr = _pItem.start_time.split("/")
-                        
-                      // 判斷年月相等
-                      if (parseInt(_pItem_start_time_arr[0]) == baseYear && parseInt(_pItem_start_time_arr[1]) == i){
-                          dataSet.power[i] = parseInt(_pItem.total);
-                      }
-                 }
-                 
-                 // water
-                 for (var k = 0; k < result.totalList.water.length; k++) {
-                      var _wItem = result.totalList.water[k];
-                      var _wItem_start_time_arr = _wItem.start_time.split("/")
-                          
-                      // 判斷年月相等
-                      if (parseInt(_wItem_start_time_arr[0]) == baseYear && parseInt(_wItem_start_time_arr[1]) == i){
-                          dataSet.water[i] = parseInt(_wItem.total);
-                      }
-                 }
-                 
-                 // gas
-                 for (var l = 0; l < result.totalList.gas.length; l++) {
-                      var _gItem = result.totalList.gas[l];
-                      var _gItem_start_time_arr = _gItem.start_time.split("/")
-                          
-                      // 判斷年月相等
-                      if (parseInt(_gItem_start_time_arr[0]) == baseYear && parseInt(_gItem_start_time_arr[1]) == i){
-                          dataSet.gas[i] = parseInt(_gItem.total);
-                      }
-                 }
-                 
-            }*/
             
-            console.log(dataSet)
+            //console.log(dataSet)
             drawPowerTrendlines(dataSet);
         }
     })

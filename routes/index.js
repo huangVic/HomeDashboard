@@ -92,7 +92,7 @@ router.get('/home/totalList', function (req, res, next) {
 
         function finishLoad() {
                 console.log(" <<----- finishLoad ----->> ")
-                console.log(totalList)
+                //console.log(totalList)
                 //req.session.totalList = totalList;
                 res.json({ success: 'ok', status: 100, msg: "Success.", totalList: totalList })
         }

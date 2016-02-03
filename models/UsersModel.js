@@ -21,6 +21,19 @@ var USERS = function USERS() {
     
     // 執行 Parse 登入
     var login = exports.login = function login(data, callback) {
+        
+         DB.User.logIn(data.username, data.password)
+           .then(function (result) {
+               console.log("[DB][username]: " + result.get("username"));
+               console.log("[DB][email]: " + result.get("email"));
+               console.log("[DB][id]: " + result.id);
+               console.log("[DB][sessionToken]: " + result._sessionToken);
+               callback(result)
+           }, function (error) {
+               console.log("[DB][login fail]: ");
+               console.log(error);
+           });
+        /*** Parse 登入代碼 
         DB.User.logIn(data.username, data.password, {
             success: function (user) {
                 console.log("[Parse][username]: " + user.get("username"));
@@ -35,6 +48,7 @@ var USERS = function USERS() {
                 callback(null)
             }
         });
+        ***/
     }
    
 
