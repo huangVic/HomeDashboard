@@ -1,8 +1,8 @@
 ﻿var db = require("parse/node");
 
 var config = {
-    appId: "xxx",
-    key: "xxx"
+    appId: process.env.PARSE_APP_ID || 'myAppId',
+    key: process.env.PARSE_MASTER_KEY || 'myMasterKey'
 };
 
 console.log(" ==================================== ");
