@@ -7,6 +7,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var sessionAuth = require('./common/sessionAuth');
 
+if (process.env.SERVER_HOSTNAME == "AZURE") {
+    process.chdir(path.join(process.cwd(), '..'));
+}
 
 var app = express();
 
