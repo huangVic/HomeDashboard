@@ -4,7 +4,7 @@
 var USERS = function USERS() {
     var exports = {}
     
-    // 判斷 Parse Session
+    // 判斷 Session
     var currentUser = exports.currentUser = function currentUser(callback) {
         var currentUser = DB.User.current();
         if (currentUser) {
@@ -19,7 +19,7 @@ var USERS = function USERS() {
     
     
     
-    // 執行 Parse 登入
+    // 執行 DB 登入
     var login = exports.login = function login(data, callback) {
         
          DB.User.logIn(data.username, data.password)
@@ -32,6 +32,7 @@ var USERS = function USERS() {
            }, function (error) {
                console.log("[DB][login fail]: ");
                console.log(error);
+               callback(null);
            });
         /*** Parse 登入代碼 
         DB.User.logIn(data.username, data.password, {
