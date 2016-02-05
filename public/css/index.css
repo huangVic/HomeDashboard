@@ -3,8 +3,9 @@
 	pading: 0px;
 }
 .home-section .section-icons .fa{
-	font-size: 45px;
-	opacity: 0.75;
+	font-size: 42px;
+    opacity: 0.75;
+    padding-top: 8px;
 }
 .home-section .section-info{
 	font-size: 29px;
@@ -20,7 +21,7 @@
     box-shadow: 4px 5px 5px 1px #D0CFCF;
 }
 .home-section-body .listTables{
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     /*padding: 0px 8px;*/
     border: 1px solid #ddd;
    /* max-height: 320px;
@@ -54,6 +55,13 @@
 }
 .type-title{
 	font-size: 18px;
+    float: right;
+    width: 100px;
+    position: relative;
+    text-align: right;
+    margin-right: 30px;
+    top: 40px;
+    color: #fff;
 }
 .section-date{
 	font-size: 15px;
@@ -69,4 +77,13 @@
     top: 278px;
     background: #FAFAFA;
     box-shadow: 2px 2px 0 0 #DDD;*/
+}
+.home-section .table-bottom{
+    text-align: right;
+    padding-right: 10px;
+    font-size: 13px;
+    cursor: pointer;
+}
+.home-section .table-bottom a{
+    color: rgb(102, 102, 102);
 }

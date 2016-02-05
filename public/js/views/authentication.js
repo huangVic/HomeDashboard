@@ -2,6 +2,8 @@
 
 $(document).ready(function () {
     console.log(" document ready!");
+    
+    $("#navbar-main .navbar-nav").remove();
 	
     $("form").submit(function (e) {
 		e.preventDefault();
