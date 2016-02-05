@@ -29,7 +29,10 @@
 .home-section-body .listTables table{
      margin-bottom: 0px;
 }
-   
+.home-section-body .listTables table thead{
+    background-color: #565555;
+    color: #fff;
+}
 
 .home-section-body .listTables td{
     padding: 10px;
