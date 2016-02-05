@@ -34,10 +34,14 @@
     color: #fff;
 }
 
+.home-section-body .listTables th {
+    text-align: center;
+}
 .home-section-body .listTables td{
     padding: 10px;
     background-color: #fff;
-    box-shadow: 2px 2px 0 0 #DDD;   
+    box-shadow: 2px 2px 0 0 #DDD;
+    text-align: center;
 }
 
 .news-title{
