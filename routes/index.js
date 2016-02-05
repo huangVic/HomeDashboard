@@ -28,6 +28,7 @@ router.get('/', function (req, res, next) {
                 { src: "https://www.google.com/jsapi" },
                 { src: "/libs/handlebars-v4.0.4.js" },
                 { src: "/js/stores/dataStore.js" },
+                { src: "/js/components/table_components.js" },
                 { src: "/js/views/indexList.js" }
         ];
         

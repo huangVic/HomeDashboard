@@ -105,3 +105,11 @@
     </tbody>
   </table>
 </script>
+<!--首頁列表項目 -->
+<script id="indexPage-dataItem" type="text/x-handlebars-template">
+   <tr>
+      <td>{{year}}</td>
+      <td>{{start_month}} - {{end_month}}</td>
+      <td>{{total}}</td>
+   </tr>
+</script>

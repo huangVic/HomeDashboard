@@ -1,6 +1,7 @@
 
 google.load('visualization', '1', {packages: ['corechart', 'bar']});
 var store = new STORE();
+var tableComponents = new TABLE_COMPONENTS();
 
 $(document).ready(function () {
     console.log(" document ready!");
@@ -15,7 +16,7 @@ $(document).ready(function () {
 
 
 
-function loadHomeData() {
+var loadHomeData = function loadHomeData() {
     store.loadDataFromServer(api_url.all.home.totalList, function (result) {
         if (result) {
             store.dataToStorage(result);
@@ -37,8 +38,7 @@ function loadHomeData() {
                   $(".power-total").text("NT $" + formatNumber(poweritem.total));  
                 }
                 
-                
-               
+                appendTableList("power-table", result.totalList.power) 
             }
             
             //console.log(dataSet)
@@ -56,7 +56,10 @@ function loadHomeData() {
                 if(wateritem.total != undefined){
                   $(".water-total").text("NT $" + formatNumber(wateritem.total));  
                 }
+                
+                appendTableList("water-table", result.totalList.water)
             }
+            
             
             // 最新資訊:瓦斯費
             if ( result.totalList.gas && result.totalList.gas.length > 0){
@@ -72,11 +75,10 @@ function loadHomeData() {
                   $(".gas-total").text("NT $" + formatNumber(gasitem.total));  
                 }
                 
+                appendTableList("gas-table", result.totalList.gas)
             }
             
-            // 移除"載入中"
-            $("#spinner-loading").remove();
-            $("#home-section-body").show();
+            
             
             
             
@@ -102,10 +104,10 @@ function loadHomeData() {
                     // -------- power -----------
                     for (var j = 0; j < result.totalList.power.length; j++) {
                         var _pItem = result.totalList.power[j];
-                        var _pItem_start_time_arr = _pItem.start_time.split("/")
+                        var _pItem_end_time_arr = _pItem.end_time.split("/")
                         
                         // 判斷年月相等
-                        if (parseInt(_pItem_start_time_arr[0]) == y && parseInt(_pItem_start_time_arr[1]) == i) {
+                        if (parseInt(_pItem_end_time_arr[0]) == y && parseInt(_pItem_end_time_arr[1]) == i) {
                             monthItem.power = parseInt(_pItem.total);
                         }
                     }
@@ -113,10 +115,10 @@ function loadHomeData() {
                     // water
                     for (var k = 0; k < result.totalList.water.length; k++) {
                         var _wItem = result.totalList.water[k];
-                        var _wItem_start_time_arr = _wItem.start_time.split("/")
+                        var _wItem_end_time_arr = _wItem.end_time.split("/")
                           
                         // 判斷年月相等
-                        if (parseInt(_wItem_start_time_arr[0]) == y && parseInt(_wItem_start_time_arr[1]) == i) {
+                        if (parseInt(_wItem_end_time_arr[0]) == y && parseInt(_wItem_end_time_arr[1]) == i) {
                             monthItem.water = parseInt(_wItem.total);
                         }
                     }
@@ -124,10 +126,10 @@ function loadHomeData() {
                     // gas
                     for (var l = 0; l < result.totalList.gas.length; l++) {
                         var _gItem = result.totalList.gas[l];
-                        var _gItem_start_time_arr = _gItem.start_time.split("/")
+                        var _gItem_end_time_arr = _gItem.end_time.split("/")
                           
                         // 判斷年月相等
-                        if (parseInt(_gItem_start_time_arr[0]) == y && parseInt(_gItem_start_time_arr[1]) == i) {
+                        if (parseInt(_gItem_end_time_arr[0]) == y && parseInt(_gItem_end_time_arr[1]) == i) {
                             monthItem.gas = parseInt(_gItem.total);
                         }
                     }
@@ -138,7 +140,11 @@ function loadHomeData() {
                 dataSet.push(yearItem);
             }
              
-             
+            
+            
+            // 移除"載入中"
+            $("#spinner-loading").remove();
+            $("#home-section-body").show(); 
             
             //console.log(dataSet)
             drawPowerTrendlines(dataSet);
@@ -146,9 +152,11 @@ function loadHomeData() {
     })
 }
 
-function drawPowerTrendlines(dataList){
+
+
+var drawPowerTrendlines = function drawPowerTrendlines(dataList){
     
-       var data = new google.visualization.DataTable();
+      var data = new google.visualization.DataTable();
       data.addColumn('string', '日期');
       data.addColumn('number', '電費');
       data.addColumn('number', '水費');
@@ -183,13 +191,55 @@ function drawPowerTrendlines(dataList){
       var options = {
         title: '今年度統計資料',
         subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+        focusTarget: 'category',
         backgroundColor: "transparent",
+        colors: ['cornflowerblue', 'tomato', '#7E57C2' , '#66BB6A'],
+        fontName: 'Open Sans',
         seriesType: 'bars',
+        chartArea: {
+            left: 50,
+            top: 10,
+            width: '100%',
+            height: '70%'
+        },
+        bar: {
+            groupWidth: '70%'
+        },
         series: { 3: { type: 'area' } },
         hAxis: {
-          gridlines: { color: '#000', count: 12 }
+            baselineColor: '#DDD',
+            textStyle: {
+                fontSize: 11
+            },
+            gridlines: { 
+                color: '#000', 
+                count: 23 
+            }
         },
-        vAxis: { gridlines: { count: 8 } }
+        vAxis: {
+            minValue: 0,
+            maxValue: 1500,
+            baselineColor: '#DDD',
+            gridlines: {
+                color: '#DDD', 
+                count: 7
+            },
+            textStyle: {
+                fontSize: 11
+            }
+        },
+        legend: {
+            backgroundColor: "#fff",
+            position: 'bottom',
+            textStyle: {
+                fontSize: 12
+            }
+        },
+        animation: {
+            duration: 1200,
+            easing: 'out',
+            startup: true
+        }
         /*
         annotations: {
           boxStyle: {
@@ -244,9 +294,34 @@ function drawPowerTrendlines(dataList){
     //     backgroundColor: "transparent"
     //   };
 
-      var chart = new google.visualization.ComboChart(document.getElementById('power-chart'));
+      var chart = new google.visualization.ComboChart(document.getElementById('chart-area'));
        google.visualization.events.addListener(chart, 'ready', function(){
-           console.log(11111111)
+           //console.log(11111111)
        });
       chart.draw(data, options);
+}
+
+
+
+
+var appendTableList = function appendTableList(id, data){
+    if (data){
+        var html = "";
+        for (var i = 0; i < data.length; i++) {
+            var item = {
+                year: data[i].start_time.split("/")[0],
+                start_month: data[i].start_time.split("/")[1],
+                end_month: data[i].end_time.split("/")[1],
+                total: data[i].total
+            }
+            if ( parseInt(data[i].end_time.split("/")[0]) >  parseInt(data[i].start_time.split("/")[0]) ) {
+                item.end_month += " (" + data[i].end_time.split("/")[0] + ")"
+            }
+            tableComponents.indexPage_listItem(item, function(res){
+                html += res;
+            })
+        }
+        
+        $("#" + id + " table tbody").append(html)
+    }
 }
