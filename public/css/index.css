@@ -15,8 +15,9 @@
 }
 
 .home-section-body .alert{
-    margin-bottom: 0px;
+    margin-bottom: 8px;
     border-radius: 0px;
+    box-shadow: 4px 5px 5px 1px #D0CFCF;
 }
 .home-section-body .listTables{
     margin-bottom: 20px;
